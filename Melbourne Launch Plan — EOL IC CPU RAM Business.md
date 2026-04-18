@@ -470,11 +470,11 @@ These Melbourne-based businesses already aggregate EOL hardware at scale. A sing
 
 | Priority | Company | Contact | Why They Matter |
 |----------|---------|---------|-----------------|
-| **#1** | **A Tech Recyclers** — Mordialloc VIC | atechrecyclers.com.au | Process 200+ computers/week. Don't extract CPU/RAM at component level — that value is going into bulk scrap. You offer incremental revenue per lot they're currently leaving on the table. |
+| **#1** | **A Tech Recyclers** — Mordialloc VIC | 0407 609 975 · atechrecyclers.com.au | Process 200+ computers/week. Don't extract CPU/RAM at component level — that value is going into bulk scrap. You offer incremental revenue per lot they're currently leaving on the table. |
 | **#2** | **CRB Networks** — Sandringham VIC | (03) 8306 1376 · sales@crbnetworks.com.au | Cisco/HPE/Dell server broker. Server boards have unextracted CPU/RAM value. Long-established; key contact is Anthony (0401 728 140). |
 | **#3** | **Reused IT Storages** — Melbourne Metro | 1800 776 689 · itequipmentbuyback.com.au | Already runs a Processor Buyback and Memory Buyback service — they're in the same market. Approach as a wholesale bulk buyer for lots they can't individually resell. |
 | **#4** | **RenovaTech** — Melbourne VIC | renovatech.com.au | Founded 2023 — growing but no established downstream buyer. Position as their overseas component buyer: they collect, you take the components. |
-| **#5** | **Support Components** — Eltham VIC | 1300 67 0922 · sales@supportcomponents.com.au | EOL/obsolete IC and semiconductor specialist. Two-way trade — they can be a buyer of specific IC types you collect, and a source for hard-to-find EOL components. |
+| **#5** | **Support Components** — Eltham VIC | 1300 67 0922 · sales@supportcomponents.com.au *(website down at time of writing — verify before calling)* | EOL/obsolete IC and semiconductor specialist. Two-way trade — they can be a buyer of specific IC types you collect, and a source for hard-to-find EOL components. |
 | **#6** | **Techbuyer AU** | techbuyer.com/au | Global structured buy program for decommissioned server CPUs and RAM. Register as a trade seller — useful outlet for high-grade lots. |
 | **#7** | **Excess Technology** — Melbourne VIC | excesstechnology.com.au | ISO-certified ITAD with a buyback program. Enterprise clients = high-grade server hardware. Approach as a downstream component buyer. |
 | **#8** | **ReTech Pty Ltd** — Melbourne VIC | retech.com.au | 30+ years ITAD in Victoria; government/health sector clients. No component-level extraction capability — the gap your model fills. Long-term relationship. |
@@ -633,7 +633,7 @@ Ranked by speed of return. Do them in this order.
 
 ### Day 3–5
 
-5. **Call A Tech Recyclers (Mordialloc)** — atechrecyclers.com.au. Process 200+ computers/week with no component-level buyer. Use the ITAD operator script from Section 3.2. This single call could establish your Melbourne baseline supply.
+5. **Call A Tech Recyclers (Mordialloc)** — 0407 609 975 · atechrecyclers.com.au. Process 200+ computers/week with no component-level buyer. Use the ITAD operator script from Section 3.2. This single call could establish your Melbourne baseline supply.
 
 6. **Call CRB Networks (Sandringham)** — (03) 8306 1376 · ask for Anthony. EOL server boards with unextracted CPU/RAM value. Use the surplus broker script from Section 3.2.
 
@@ -667,14 +667,14 @@ Ranked by speed of return. Do them in this order.
 
 ### Regulatory
 - **EPA Victoria Business Hotline:** 1300 372 842
-- **Sustainability Victoria (e-waste guidance):** sustainability.vic.gov.au
+- **EPA Victoria (e-waste guidance):** epa.vic.gov.au *(Sustainability Victoria is being abolished in 2026 — use EPA Vic as the primary regulatory reference)*
 - **AS/NZS 5377 certification pathway:** via SAI Global or Bureau Veritas
 
 ### Supply Partners (Priority)
 - **A Tech Recyclers (Mordialloc):** atechrecyclers.com.au
 - **CRB Networks (Sandringham):** (03) 8306 1376 | sales@crbnetworks.com.au
 - **Reused IT Storages:** 1800 776 689 | itequipmentbuyback.com.au
-- **Support Components (Eltham):** 1300 67 0922 | sales@supportcomponents.com.au
+- **Support Components (Eltham):** 1300 67 0922 | sales@supportcomponents.com.au *(website offline — verify contact details before outreach)*
 
 ### Potential Large Clients (90+ day pipeline)
 - **Synnex Australia (Oakleigh South):** 1300 100 100
