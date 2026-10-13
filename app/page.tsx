@@ -10,6 +10,13 @@ const materials = [
   { number: "04", label: "GPUs & expansion cards", image: "/materials/gpus-art.webp" },
 ];
 
+const certifications = [
+  { title: "ISO 9001", copy: "Quality management", href: "https://www.iso.org/standard/9001" },
+  { title: "ISO 14001", copy: "Environmental management", href: "https://www.iso.org/standard/14001" },
+  { title: "ISO 45001", copy: "Occupational health & safety", href: "https://www.iso.org/standard/45001" },
+  { title: "AS/NZS 5377", copy: "E-waste collection, storage and treatment", href: "https://store.standards.org.au/product/as-nzs-5377-2013" },
+];
+
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
@@ -127,9 +134,39 @@ export default function Home() {
 
       <section className="section process" id="process"><div className="container"><div className="section-heading"><div><span className="eyebrow mono">How it works</span><h2>Clear from first message to final outcome.</h2></div><p>We keep the process legible, so you know what we need and what you will receive.</p></div><div className="process-grid">{[['01','Describe it','Tell us what you have, where it is and which service you need.'],['02','Assess it','We clarify categories, media types, quantities and the right handling path.'],['03','Handle it','Arrange the approved handover, collection or service appointment.'],['04','Close the loop','Receive confirmed next steps, payment terms or destruction documentation.']].map(([num,title,copy]) => <article className="process-step" key={num}><span className="mono">{num}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
 
-      <section className="section security" id="security"><div className="container security-inner"><div><span className="eyebrow mono">Business data destruction</span><h2>Security you can explain to your team.</h2><p>From the first handover to the final record, agree the media, method and evidence before work begins.</p><div className="security-list"><div className="security-item"><strong>Media-aware</strong><p>Hard drives, SSDs, tapes and devices need the right treatment.</p></div><div className="security-item"><strong>Documented</strong><p>Confirm the report or certificate your business needs.</p></div><div className="security-item"><strong>Controlled</strong><p>Clarify custody, access and approved handling locations.</p></div><div className="security-item"><strong>Transparent</strong><p>Use a service path your stakeholders can understand.</p></div></div><a className="button" href="#contact" style={{marginTop: 30}}>Talk through your requirements <Arrow /></a></div><div className="security-visual"><div className="seal">Secure<br />handling<br />path</div><p className="quote">“We make the last mile of IT asset recovery easier to prove.”</p></div></div></section>
+      <section className="section security" id="security">
+        <div className="container security-inner">
+          <div>
+            <span className="eyebrow mono">Business data destruction</span>
+            <h2>Security you can explain to your team.</h2>
+            <p>From the first handover to the final record, agree the media, method and evidence before work begins.</p>
+            <div className="security-list">
+              <div className="security-item"><strong>Media-aware</strong><p>Hard drives, SSDs, tapes and devices need the right treatment.</p></div>
+              <div className="security-item"><strong>Documented</strong><p>Confirm the report or certificate your business needs.</p></div>
+              <div className="security-item"><strong>Controlled</strong><p>Clarify custody, access and approved handling locations.</p></div>
+              <div className="security-item"><strong>Transparent</strong><p>Use a service path your stakeholders can understand.</p></div>
+            </div>
+            <a className="button" href="#contact" style={{marginTop: 30}}>Talk through your requirements <Arrow /></a>
+          </div>
+          <figure className="security-visual">
+            <div className="security-machine">
+              <Image
+                src="/data-destruction-machine-art.webp"
+                alt="Artistic illustration of a cabinet-style data destruction machine with control buttons, a collection drawer and caster wheels."
+                fill
+                sizes="(max-width: 600px) 260px, 296px"
+                className="security-machine-image"
+              />
+            </div>
+            <figcaption className="security-machine-caption">
+              <span className="mono">Data destruction equipment</span>
+              <p>Secure handling. Responsible recovery.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
-      <section className="section"><div className="container proof-section"><div><span className="eyebrow mono">Our standards</span><h2>Trust needs details.</h2><p style={{marginTop: 22}}>The certification references below are associated with YP ECYCLE. We will publish the exact scope, holder and current documents once the new business relationship is confirmed.</p><a className="text-link" href="https://ypecycle.com.au/certifications" target="_blank" rel="noreferrer">View YP ECYCLE certifications <Arrow /></a></div><div><div className="cert-list">{[['ISO 9001','Quality management'],['ISO 14001','Environmental management'],['ISO 45001','Occupational health & safety'],['AS/NZS 5377','E-waste collection, storage and treatment']].map(([title, copy]) => <div className="cert-row" key={title}><div><strong>{title}</strong><p>{copy}</p></div><span>REFERENCE</span></div>)}</div><p className="cert-note">Certification marks and claims should be used only for the legal entity, sites and activities covered by current documentation.</p></div></div></section>
+      <section className="section"><div className="container proof-section"><div><span className="eyebrow mono">Our standards</span><h2>Trust needs details.</h2><p style={{marginTop: 22}}>The certification references below are associated with YP ECYCLE. We will publish the exact scope, holder and current documents once the new business relationship is confirmed.</p><a className="text-link" href="https://ypecycle.com.au/certifications" target="_blank" rel="noopener noreferrer">View YP ECYCLE certifications <Arrow /></a></div><div><div className="cert-list">{certifications.map(({ title, copy, href }) => <a className="cert-row" href={href} target="_blank" rel="noopener noreferrer" key={title}><div><strong>{title}</strong><p>{copy}</p></div><span>REFERENCE</span></a>)}</div><p className="cert-note">Certification marks and claims should be used only for the legal entity, sites and activities covered by current documentation.</p></div></div></section>
 
       <section className="section" id="faq"><div className="container"><div className="section-heading"><div><span className="eyebrow mono">Questions, answered</span><h2>Before you send a message.</h2></div><p>We will tailor the live answers to confirmed terms, service area and operating details.</p></div><div className="faq-grid"><details><summary>What components can I send?</summary><p>We are preparing to assess PCBs, CPUs, RAM, GPUs and selected computer equipment. Send a description or photo and we will confirm suitability.</p></details><details><summary>Do you publish fixed prices?</summary><p>Values depend on category, grade, quantity and current buying rates. The launch experience is an assessed quote rather than a static price table.</p></details><details><summary>Can you handle data-bearing devices?</summary><p>Yes, the data-destruction enquiry is designed to clarify media types, handling requirements, service location and the documentation you need.</p></details><details><summary>What happens after I enquire?</summary><p>We will review the details, clarify anything missing and confirm the next practical step. Response timing will be set by the operating team.</p></details></div></div></section>
 
