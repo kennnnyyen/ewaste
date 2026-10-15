@@ -7,7 +7,7 @@ const whatsappNumber = "61434285829";
 const messengerPage = "";
 const message = "Hi Recore, I'd like to enquire about computer scrap recycling or data destruction.";
 const channels = [
-  { name: "WhatsApp", href: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}` },
+  { name: "WhatsApp", href: `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}` },
   { name: "Messenger", href: messengerPage ? `https://m.me/${encodeURIComponent(messengerPage)}` : null },
 ];
 
