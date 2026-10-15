@@ -68,7 +68,7 @@ export default function Home() {
           <div className="hero-copy">
             <span className="eyebrow mono">Recovery, handled properly</span>
             <h1>Computer scrap recycling. <em>Secure data destruction.</em></h1>
-            <p className="hero-intro">Recover value from your PCBs, CPUs and selected computer components, or give retired business IT a secure, documented exit.</p>
+            <p className="hero-intro">Recover value from your PCBs, CPUs and selected computer components with Recore, or give retired business IT a secure, documented exit.</p>
             <div className="hero-actions">
               <a className="button" href="#contact">Get a scrap quote <Arrow /></a>
               <a className="button secondary" href="#security">Enquire about data destruction <Arrow /></a>
