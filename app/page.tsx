@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FormEvent, useState } from "react";
+import Wordmark from "./recore-wordmark";
 
 const materials = [
   { number: "01", label: "PCBs & motherboards", image: "/materials/pcbs-art.webp" },
@@ -19,17 +20,6 @@ const certifications = [
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
-}
-
-function Mark() {
-  return (
-    <span className="brand-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M6 8.5 12 5l6 3.5v7L12 19l-6-3.5v-7Z" />
-        <path d="m6.3 8.7 5.7 3.4 5.7-3.4M12 12.1V19" />
-      </svg>
-    </span>
-  );
 }
 
 export default function Home() {
@@ -59,7 +49,7 @@ export default function Home() {
     <main className="site-shell">
       <header className="header">
         <div className="container nav">
-          <a className="brand" href="#top" aria-label="[Business Name] home"><Mark /><span>[Business Name]</span></a>
+          <a className="brand" href="#top" aria-label="Recore home"><Wordmark /></a>
           <button className="menu-button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
           </button>
@@ -172,7 +162,7 @@ export default function Home() {
 
       <section className="section contact" id="contact"><div className="container contact-grid"><div className="contact-copy"><span className="eyebrow mono">Start a conversation</span><h2>Tell us what needs a better exit.</h2><p>Choose a service and share enough detail for a useful first response. A photo is welcome, but never required to get started.</p><div className="contact-details"><a href="mailto:hello@example.com">hello@example.com <Arrow /></a><a href="tel:+61000000000">+61 00 0000 0000 <Arrow /></a><span className="mono">[Service area to be confirmed]</span></div></div><form className="form-card" onSubmit={handleSubmit}><div className="form-grid"><div className="field"><label htmlFor="name">Name</label><input id="name" name="name" required placeholder="Your name" /></div><div className="field"><label htmlFor="email">Email</label><input id="email" name="email" required type="email" placeholder="you@company.com" /></div><div className="field"><label htmlFor="company">Business (optional)</label><input id="company" name="company" placeholder="Company name" /></div><div className="field"><label htmlFor="service">I need help with</label><select id="service" name="service" defaultValue="scrap"><option value="scrap">Selling computer scrap</option><option value="destruction">Data destruction</option><option value="both">Both services</option></select></div><div className="field full"><label htmlFor="message">What can you tell us?</label><textarea id="message" name="message" required placeholder="Components, media types, approximate quantity, location…" /></div></div><div className="form-foot"><small>By submitting, you agree to be contacted about this enquiry. See our privacy notice.</small><button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send enquiry"} <Arrow /></button></div>{status === "success" && <p className="form-message" role="status">Thanks — your enquiry has been received. We will be in touch after the operating details are confirmed.</p>}{status === "error" && <p className="form-message" role="alert">We could not send that just now. Please try again or call us directly.</p>}</form></div></section>
 
-      <footer className="footer"><div className="container footer-inner"><a className="brand" href="#top"><Mark /><span>[Business Name]</span></a><small>Computer component recovery &amp; secure data destruction</small><div className="footer-links"><a href="#privacy">Privacy</a><a href="#contact">Contact</a></div></div></footer>
+      <footer className="footer"><div className="container footer-inner"><a className="brand" href="#top" aria-label="Recore home"><Wordmark /></a><small>Computer component recovery &amp; secure data destruction</small><div className="footer-links"><a href="#privacy">Privacy</a><a href="#contact">Contact</a></div></div></footer>
     </main>
   );
 }
