@@ -346,7 +346,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section contact-section" id="contact">
+        <section className="section contact-section" id="contact" tabIndex={-1}>
           <div className="container contact-grid">
             <div className="contact-intro">
               <span className="eyebrow">LET’S CLEAR THE WAY</span>
