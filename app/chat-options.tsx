@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 
-const whatsappNumber = "61434285829";
+const whatsappNumber = "61491570006";
 // Replace with the Facebook business Page username or ID when it is ready.
 const messengerPage = "";
 const message = "Hi Recore, I'd like to enquire about computer scrap recycling or data destruction.";

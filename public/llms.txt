@@ -1,0 +1,22 @@
+# Recore
+
+> Recore provides a starting point for e-waste recycling, computer component recovery and data destruction enquiries. Acceptance and service arrangements are confirmed for each load.
+
+## Recycling guides
+- [Computers and laptops](/recycling/computers-and-laptops): desktops, laptops and all-in-one computers.
+- [Printers and office equipment](/recycling/printers-and-office-equipment): printers, scanners and electronic office equipment.
+- [Monitors and displays](/recycling/monitors-and-displays): computer displays; older or damaged screens require assessment.
+- [Servers and networking](/recycling/servers-and-networking): servers, switches, routers and selected infrastructure.
+- [Circuit boards](/recycling/circuit-boards): PCBs, motherboards and expansion cards.
+- [Processors, memory and graphics](/recycling/processors-memory-and-graphics): CPUs, RAM and GPUs.
+- [Hard drives and storage](/recycling/hard-drives-and-storage): HDDs, SSDs and storage media; discuss data handling before recycling.
+- [Cables and peripherals](/recycling/cables-and-peripherals): computer cables, keyboards, mice and selected accessories.
+
+## Services and enquiries
+- [Services](/#services)
+- [Data destruction enquiries](/#security)
+- [Frequently asked questions](/#faq)
+- [Contact Recore](/#contact): equipment descriptions, photos, approximate quantities and location help Recore assess a load.
+
+## Important limits
+Prices, collection availability, drop-off arrangements, fees and acceptance depend on the specific job. Confirm these with Recore before transport or handover. No public street address, operating hours, certification ownership or nationwide service coverage is asserted on this site. Website equipment artwork is illustrative.

@@ -1,193 +1,410 @@
-"use client";
-
 import Image from "next/image";
-import { FormEvent, useEffect, useRef, useState } from "react";
-import Wordmark from "./recore-wordmark";
-import RecoveryExplorer from "./recovery-explorer";
-import ChatOptions, { ContactChatLinks } from "./chat-options";
+import SiteHeader from "./site-header";
+import SiteFooter from "./site-footer";
+import ProductFinder from "./product-finder";
+import EnquiryComposer from "./enquiry-composer";
+import { categories, enquiryUrl, faqs } from "./recycling-content";
+import { siteUrl } from "./site-config";
 
-const materials = [
-  { number: "01", label: "PCBs & motherboards", image: "/materials/pcbs-art.webp" },
-  { number: "02", label: "CPUs & processors", image: "/materials/cpus-art.webp" },
-  { number: "03", label: "RAM & memory", image: "/materials/ram-art.webp" },
-  { number: "04", label: "GPUs & expansion cards", image: "/materials/gpus-art.webp" },
+const steps = [
+  [
+    "Show us what you have",
+    "Send an equipment list or a few clear photos, approximate quantities and your location.",
+  ],
+  [
+    "Agree the right approach",
+    "We assess the load and confirm acceptance, any recovery value or charges, data requirements and handover options.",
+  ],
+  [
+    "Make room for what’s next",
+    "Proceed with the agreed recycling or data service, with any job records and payment terms confirmed in advance.",
+  ],
 ];
-
-const certifications = [
-  { title: "ISO 9001", copy: "Quality management", href: "https://www.iso.org/standard/9001" },
-  { title: "ISO 14001", copy: "Environmental management", href: "https://www.iso.org/standard/14001" },
-  { title: "ISO 45001", copy: "Occupational health & safety", href: "https://www.iso.org/standard/45001" },
-  { title: "AS/NZS 5377", copy: "E-waste collection, storage and treatment", href: "https://store.standards.org.au/product/as-nzs-5377-2013" },
-];
-
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
-}
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (!menuOpen) return;
-    function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-        menuButtonRef.current?.focus();
-      }
-    }
-    document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
-  }, [menuOpen]);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("sending");
-    const form = event.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
-    try {
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error("Unable to submit");
-      form.reset();
-      setStatus("success");
-    } catch {
-      setStatus("error");
-    }
-  }
-
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: "Recore",
+        description:
+          "E-waste recycling, computer component recovery and data destruction enquiries.",
+        ...(siteUrl ? { url: siteUrl, "@id": `${siteUrl}/#organisation` } : {}),
+      },
+      {
+        "@type": "Service",
+        name: "E-waste recycling and computer component recovery",
+        provider: { "@type": "Organization", name: "Recore" },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Recycling categories",
+          itemListElement: categories.map((category) => ({
+            "@type": "OfferCatalog",
+            name: category.title,
+            ...(siteUrl
+              ? { url: `${siteUrl}/recycling/${category.slug}` }
+              : {}),
+          })),
+        },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map(({ question, answer }) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
+    ],
+  };
   return (
-    <div className="site-shell">
-      <a href="#main-content" className="skip-link">Skip to content</a>
-      <header className="header">
-        <div className="container nav">
-          <a className="brand" href="#top" aria-label="Recore home"><Wordmark /></a>
-          <button ref={menuButtonRef} type="button" className="menu-button" aria-controls="primary-navigation" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-          </button>
-          <nav id="primary-navigation" className={`nav-links ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
-            <a href="#materials" onClick={() => setMenuOpen(false)}>Materials</a>
-            <a href="#security" onClick={() => setMenuOpen(false)}>Data destruction</a>
-            <a href="#process" onClick={() => setMenuOpen(false)}>How it works</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          </nav>
-          <a className="nav-cta" href="#contact">Start an enquiry <Arrow /></a>
-        </div>
-      </header>
-
+    <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <SiteHeader />
       <main id="main-content">
-      <section className="hero" id="top">
-        <div className="container">
-          <div className="hero-topline mono"><span><i className="status-dot" /> A better future, at the core.</span><span>Component recovery / Data security</span></div>
-          <div className="hero-content">
+        <section className="hero" id="top">
+          <div className="container hero-grid">
             <div className="hero-copy">
-              <span className="eyebrow mono">Rethink what comes next</span>
-              <h1>End of life.<br />Start of <em>something better<span>.</span></em></h1>
-              <p className="hero-intro">Your old technology still has a future. Recover value from computer components and give sensitive business data a secure, documented exit.</p>
+              <span className="eyebrow">
+                E-WASTE RECYCLING & RESOURCE RECOVERY
+              </span>
+              <h1>
+                <span className="sr-only">E-waste recycling. </span>Old
+                technology.
+                <br />
+                <span>New possibilities.</span>
+              </h1>
+              <p>
+                From a box of circuit boards to a warehouse of retired IT.
+                Recore helps you find a better way forward for computers, office
+                equipment and electronic components.
+              </p>
               <div className="hero-actions">
-                <a className="button" href="#contact">Find your next step <Arrow /></a>
-                <a className="hero-secondary" href="#services">Explore our services <span aria-hidden="true">↓</span></a>
+                <a className="button" href="#products">
+                  Find what you can recycle <span aria-hidden="true">↗</span>
+                </a>
+                <a className="text-link" href="#contact">
+                  Ask about your equipment <span aria-hidden="true">↗</span>
+                </a>
               </div>
-              <div className="micro-proof"><span>↗ Component recovery</span><span>◇ Secure data destruction</span></div>
+              <div className="hero-note">
+                <span className="dot" /> Whole equipment. Individual components.
+                Mixed loads.
+              </div>
             </div>
-            <RecoveryExplorer />
+            <figure className="hero-visual">
+              <div className="hero-image">
+                <Image
+                  src="/recycling-equipment-hero.webp"
+                  alt="Illustrative arrangement of retired computers, a laptop, printer, networking equipment and electronic components."
+                  fill
+                  priority
+                  sizes="(max-width: 800px) 100vw, 50vw"
+                />
+              </div>
+              <figcaption>
+                <span>Tomorrow, recovered.</span>
+              </figcaption>
+              <span className="visual-index" aria-hidden="true">
+                RE / 01
+              </span>
+            </figure>
           </div>
-          <div className="hero-footnote mono"><span>More possibility. Less left behind.</span><a href="#services">Discover the Recore approach <span aria-hidden="true">↓</span></a></div>
-        </div>
-      </section>
-
-      <section className="trust-bar" aria-label="YP ECYCLE certification references">
-        <div className="container trust-inner">
-          <p><strong>Built on responsible foundations.</strong>YP ECYCLE certification references. <a href="#standards">View scope &amp; details ↗</a></p>
-          <div className="cert"><strong>ISO 9001</strong><p>Quality</p></div>
-          <div className="cert"><strong>ISO 14001</strong><p>Environment</p></div>
-          <div className="cert"><strong>ISO 45001</strong><p>Safety</p></div>
-          <div className="cert"><strong>AS/NZS 5377</strong><p>E-waste</p></div>
-        </div>
-      </section>
-
-      <section className="section" id="services">
-        <div className="container">
-          <div className="section-heading"><div><span className="eyebrow mono">01 / Two paths. One better outcome.</span><h2>One team. Two clear ways forward.</h2></div><p>Whether you have a box of processors or a room of retired devices, start with the outcome you need.</p></div>
-          <div className="service-grid">
-            <article className="service-card"><div><div className="service-card-top"><span className="service-number">01 / MATERIALS</span><span className="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 5h16v14H4zM8 9h8M8 13h5" /></svg></span></div><h3>Sell your computer scrap with confidence.</h3><p>PCBs, CPUs, RAM, GPUs and selected whole units assessed clearly, with a straightforward next step.</p></div><a href="#contact" className="text-link">Request a component quote <Arrow /></a></article>
-            <article className="service-card dark"><div><div className="service-card-top"><span className="service-number">02 / SECURITY</span><span className="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 3 20 6v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-3Z" /><path d="m8 12 2.5 2.5L16 9" /></svg></span></div><h3>Retire business IT without the doubt.</h3><p>Build a documented chain of custody around hard drives, devices and sensitive media before they leave your control.</p></div><a href="#contact" className="text-link">Plan data destruction <Arrow /></a></article>
+        </section>
+        <div className="intro-strip">
+          <div className="container">
+            <p>A clearer path for your retired technology.</p>
+            <span>Equipment recycling</span>
+            <span>Component recovery</span>
+            <span>Data destruction enquiries</span>
           </div>
         </div>
-      </section>
 
-      <section className="section materials" id="materials">
-        <div className="container"><div className="section-heading"><div><span className="eyebrow mono">02 / The value in what’s left</span><h2>Components with a second life.</h2></div><p>Send a photo if you are unsure. We will help identify what you have and what happens next.</p></div>
-          <div className="materials-grid">
-            {materials.map(({ number, label, image }) => (
-              <article className="material" key={number}>
-                <div className="material-graphic">
-                  <Image
-                    className="material-image"
-                    src={image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 600px) 85vw, (max-width: 900px) 42vw, 240px"
-                  />
+        <section className="section" id="products">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">01 / WHAT WE RECYCLE</span>
+                <h2>More than computer scrap.</h2>
+              </div>
+              <p>
+                Find your equipment below. Every load starts with an assessment,
+                so you know what can be accepted and how to prepare it.
+              </p>
+            </div>
+            <ProductFinder />
+            <div className="help-note">
+              <span>Not sure where your items fit?</span>
+              <a
+                href={enquiryUrl(
+                  "Hi Recore, can you help identify the recycling options for my equipment? I can share some photos.",
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Send us a photo <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section services-section" id="services">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">02 / THE RIGHT SERVICE</span>
+                <h2>
+                  One place to start.
+                  <br />A considered next step.
+                </h2>
+              </div>
+              <p>
+                Clearing an office, managing business assets or sorting valuable
+                components? Start with the service that fits.
+              </p>
+            </div>
+            <div className="service-grid">
+              {[
+                {
+                  num: "01",
+                  title: "Equipment recycling",
+                  text: "Desktops, laptops, printers, monitors and infrastructure. Share your equipment list to plan a suitable recycling handover.",
+                  link: "Explore equipment",
+                  href: "#products",
+                },
+                {
+                  num: "02",
+                  title: "Component & scrap recovery",
+                  text: "PCBs, processors, memory and selected computer scrap assessed for material type, grade, quantity and recovery value.",
+                  link: "Request a scrap quote",
+                  href: enquiryUrl(
+                    "Hi Recore, I'd like a quote for computer scrap and components.",
+                  ),
+                },
+                {
+                  num: "03",
+                  title: "Data-aware IT retirement",
+                  text: "Put data handling on the plan before equipment leaves your control. Discuss media, custody, destruction methods and required records.",
+                  link: "Explore data destruction",
+                  href: "#security",
+                },
+              ].map((service) => (
+                <article className="service-card" key={service.num}>
+                  <span className="service-number">{service.num} /</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.text}</p>
+                  <a className="text-link" href={service.href}>
+                    {service.link}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section security-section" id="security">
+          <div className="container security-grid">
+            <div>
+              <span className="eyebrow">THE DATA MATTERS, TOO</span>
+              <h2>
+                Retire the equipment.
+                <br />
+                <span>Protect what’s on it.</span>
+              </h2>
+              <p>
+                Computers, servers and even office printers can hold sensitive
+                information. Plan data destruction before recycling, with a
+                method suited to the media and the records your organisation
+                needs.
+              </p>
+              <a
+                className="button"
+                href={enquiryUrl(
+                  "Hi Recore, I'd like to discuss data destruction before recycling equipment.",
+                )}
+              >
+                Discuss data destruction <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className="security-checklist">
+              <span className="security-label">BEFORE THE HANDOVER</span>
+              {[
+                [
+                  "01",
+                  "Identify the media",
+                  "Separate hard drives, SSDs and other storage. Flag any devices that may contain data.",
+                ],
+                [
+                  "02",
+                  "Agree the handling",
+                  "Confirm the service method, custody arrangements and the location of the work.",
+                ],
+                [
+                  "03",
+                  "Define the evidence",
+                  "Agree any asset records, reports or certificates your job requires before work begins.",
+                ],
+              ].map(([n, title, text]) => (
+                <div className="security-step" key={n}>
+                  <span>{n}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                  </div>
                 </div>
-                <div className="material-caption">
-                  <span className="mono">{number}</span>
-                  <h3>{label}</h3>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="process">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">03 / HOW IT WORKS</span>
+                <h2>
+                  Less uncertainty.
+                  <br />
+                  More room to move.
+                </h2>
+              </div>
+              <p>
+                A useful first conversation makes the rest simpler. Here’s what
+                to expect.
+              </p>
+            </div>
+            <div className="process-grid">
+              {steps.map(([title, text], i) => (
+                <article key={title}>
+                  <span className="step-number">0{i + 1}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="preparation">
+              <strong>A little preparation goes a long way.</strong>
+              <p>
+                Keep loose batteries, toner and damaged screens separate.
+                Confirm acceptance and handover arrangements before travelling
+                or sending equipment.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="recovery-band">
+          <div className="container recovery-band-inner">
+            <span className="eyebrow">THE RECORE APPROACH</span>
+            <h2>
+              There’s more to old technology
+              <br />
+              than what’s been left behind.
+            </h2>
+            <p>
+              Whole devices. Useful components. Recoverable materials.
+              <br />
+              We start by understanding what you have.
+            </p>
+            <a className="text-link" href="#contact">
+              Let’s find the next step <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+        <section className="section" id="faq">
+          <div className="container faq-layout">
+            <div>
+              <span className="eyebrow">04 / GOOD QUESTIONS</span>
+              <h2>
+                A little clarity,
+                <br />
+                before you start.
+              </h2>
+              <p>
+                Can’t see your item listed? A photo is a good place to start.
+              </p>
+              <a className="text-link" href={enquiryUrl()}>
+                Ask Recore <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className="faq-list">
+              {faqs.map(({ question, answer }) => (
+                <details key={question}>
+                  <summary>
+                    {question}
+                    <span aria-hidden="true">+</span>
+                  </summary>
+                  <p>{answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section contact-section" id="contact">
+          <div className="container contact-grid">
+            <div className="contact-intro">
+              <span className="eyebrow">LET’S CLEAR THE WAY</span>
+              <h2>
+                A few items.
+                <br />
+                An entire IT refresh.
+                <br />
+                <span>Let’s talk.</span>
+              </h2>
+              <p>
+                Tell us what you have and where it is. We’ll help clarify
+                suitability, the service you need and the next practical step.
+              </p>
+              <div className="contact-signals" aria-label="Helpful enquiry details">
+                <div>
+                  <span>01</span>
+                  <strong>Show the load</strong>
+                  <small>Photos help identify equipment and component categories.</small>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section process" id="process"><div className="container"><div className="section-heading"><div><span className="eyebrow mono">03 / A clear way forward</span><h2>Clear from first message to final outcome.</h2></div><p>We keep the process legible, so you know what we need and what you will receive.</p></div><div className="process-grid">{[['01','Describe it','Tell us what you have, where it is and which service you need.'],['02','Assess it','We clarify categories, media types, quantities and the right handling path.'],['03','Handle it','Arrange the approved handover, collection or service appointment.'],['04','Close the loop','Receive confirmed next steps, payment terms or destruction documentation.']].map(([num,title,copy]) => <article className="process-step" key={num}><span className="mono">{num}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
-
-      <section className="section security" id="security">
-        <div className="container security-inner">
-          <div>
-            <span className="eyebrow mono">04 / Confidence, built in</span>
-            <h2>Security you can explain to your team.</h2>
-            <p>From the first handover to the final record, agree the media, method and evidence before work begins.</p>
-            <div className="security-list">
-              <div className="security-item"><strong>Media-aware</strong><p>Hard drives, SSDs, tapes and devices need the right treatment.</p></div>
-              <div className="security-item"><strong>Documented</strong><p>Confirm the report or certificate your business needs.</p></div>
-              <div className="security-item"><strong>Controlled</strong><p>Clarify custody, access and approved handling locations.</p></div>
-              <div className="security-item"><strong>Transparent</strong><p>Use a service path your stakeholders can understand.</p></div>
+                <div>
+                  <span>02</span>
+                  <strong>Choose your channel</strong>
+                  <small>Send the full enquiry by email or continue in WhatsApp.</small>
+                </div>
+                <div>
+                  <span>03</span>
+                  <strong>Keep data private</strong>
+                  <small>Share equipment views, never passwords or personal records.</small>
+                </div>
+              </div>
+              <div className="contact-direct">
+                <span>DIRECT WHATSAPP</span>
+                <a
+                  href={enquiryUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  +61 491 570 006 <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <p className="contact-note">
+                Please confirm an appointment before arranging delivery. Service
+                availability and any charges are assessed for your location and
+                load.
+              </p>
             </div>
-            <a className="button" href="#contact" style={{marginTop: 30}}>Talk through your requirements <Arrow /></a>
+            <EnquiryComposer />
           </div>
-          <figure className="security-visual">
-            <div className="security-machine">
-              <Image
-                src="/data-destruction-machine-art.webp"
-                alt="Artistic illustration of a cabinet-style data destruction machine with control buttons, a collection drawer and caster wheels."
-                fill
-                sizes="(max-width: 600px) 260px, 296px"
-                className="security-machine-image"
-              />
-            </div>
-            <figcaption className="security-machine-caption">
-              <span className="mono">Data destruction equipment</span>
-              <p>Secure handling. Responsible recovery.</p>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section className="manifesto" aria-labelledby="manifesto-heading"><div className="container"><span className="eyebrow mono">The Recore mindset</span><h2 id="manifesto-heading">Progress doesn’t always<br />start with something new.<br /><span>Sometimes, it starts<br />with what’s left.</span></h2><div className="manifesto-bottom"><span className="manifesto-symbol" aria-hidden="true">↗</span><p>There is opportunity in yesterday’s technology. We help you take the next step with a clear recovery path and a considered approach to data.</p><a className="text-link" href="#contact">Let’s find the potential <Arrow /></a></div></div></section>
-
-      <section className="section" id="standards"><div className="container proof-section"><div><span className="eyebrow mono">Our standards</span><h2>Trust needs details.</h2><p style={{marginTop: 22}}>The certification references below are associated with YP ECYCLE. We will publish the exact scope, holder and current documents once the new business relationship is confirmed.</p><a className="text-link" href="https://ypecycle.com.au/certifications" target="_blank" rel="noopener noreferrer">View YP ECYCLE certifications <Arrow /></a></div><div><div className="cert-list">{certifications.map(({ title, copy, href }) => <a className="cert-row" href={href} target="_blank" rel="noopener noreferrer" key={title}><div><strong>{title}</strong><p>{copy}</p></div><span>REFERENCE</span></a>)}</div><p className="cert-note">Certification marks and claims should be used only for the legal entity, sites and activities covered by current documentation.</p></div></div></section>
-
-      <section className="section" id="faq"><div className="container"><div className="section-heading"><div><span className="eyebrow mono">Questions, answered</span><h2>Before you send a message.</h2></div><p>We will tailor the live answers to confirmed terms, service area and operating details.</p></div><div className="faq-grid"><details><summary>What components can I send?</summary><p>We are preparing to assess PCBs, CPUs, RAM, GPUs and selected computer equipment. Send a description or photo and we will confirm suitability.</p></details><details><summary>Do you publish fixed prices?</summary><p>Values depend on category, grade, quantity and current buying rates. The launch experience is an assessed quote rather than a static price table.</p></details><details><summary>Can you handle data-bearing devices?</summary><p>Yes, the data-destruction enquiry is designed to clarify media types, handling requirements, service location and the documentation you need.</p></details><details><summary>What happens after I enquire?</summary><p>We will review the details, clarify anything missing and confirm the next practical step. Response timing will be set by the operating team.</p></details></div></div></section>
-
-      <section className="section contact" id="contact"><div className="container contact-grid"><div className="contact-copy"><span className="eyebrow mono">Start a conversation</span><h2>Tell us what needs a better exit.</h2><p>Choose a service and share enough detail for a useful first response. A photo is welcome, but never required to get started.</p><div className="contact-details"><a href="mailto:hello@example.com">hello@example.com <Arrow /></a><a href="tel:+61000000000">+61 00 0000 0000 <Arrow /></a><span className="mono">[Service area to be confirmed]</span></div><ContactChatLinks /></div><form className="form-card" onSubmit={handleSubmit}><div className="form-grid"><div className="field"><label htmlFor="name">Name</label><input id="name" name="name" required placeholder="Your name" /></div><div className="field"><label htmlFor="email">Email</label><input id="email" name="email" required type="email" placeholder="you@company.com" /></div><div className="field"><label htmlFor="company">Business (optional)</label><input id="company" name="company" placeholder="Company name" /></div><div className="field"><label htmlFor="service">I need help with</label><select id="service" name="service" defaultValue="scrap"><option value="scrap">Selling computer scrap</option><option value="destruction">Data destruction</option><option value="both">Both services</option></select></div><div className="field full"><label htmlFor="message">What can you tell us?</label><textarea id="message" name="message" required placeholder="Components, media types, approximate quantity, location…" /></div></div><div className="form-foot"><small>By submitting, you agree to be contacted about this enquiry. See our privacy notice.</small><button className="button" type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send enquiry"} <Arrow /></button></div>{status === "success" && <p className="form-message" role="status">Thanks — your enquiry has been received. We will be in touch after the operating details are confirmed.</p>}{status === "error" && <p className="form-message" role="alert">We could not send that just now. Please try again or call us directly.</p>}</form></div></section>
-
+        </section>
       </main>
-      <footer className="footer"><div className="container footer-inner"><a className="brand" href="#top" aria-label="Recore home"><Wordmark /></a><small>Computer component recovery &amp; secure data destruction</small><div className="footer-links"><a href="#materials">Materials</a><a href="#contact">Contact <Arrow /></a></div></div><div className="container footer-statement" aria-hidden="true">Tomorrow, recovered<span>↗</span></div></footer>
-      <ChatOptions />
-    </div>
+      <SiteFooter />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+        }}
+      />
+    </>
   );
 }

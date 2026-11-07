@@ -12,9 +12,10 @@
     "node": "24.x"
   },
   "dependencies": {
-    "next": "^16.4.0",
+    "next": "16.4.5",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "resend": "^6.37.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",
