@@ -53,7 +53,14 @@ export default async function ArticlePage({ params }: Props) {
     mainEntityOfPage: url,
     image: new URL(article.image.src, siteUrl).href,
     keywords: article.topics,
-    author: { "@type": "Organization", name: organization.name, url: siteUrl },
+    author: {
+      "@type": "Organization",
+      "@id": organization["@id"],
+      name: organization.name,
+      url: siteUrl,
+      sameAs: organization.sameAs,
+    },
+    publisher: { "@id": organization["@id"] },
   };
   return (
     <>

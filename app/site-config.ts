@@ -3,8 +3,9 @@ import { contactDetails } from "./contact-details";
 // Confirmed public domain. Keep canonical identity independent of preview hosts and old deployment settings.
 export const siteUrl = "https://www.recore-cycle.com";
 export const siteTitle = "Recore | E-waste Recycling & Data Destruction Melbourne";
+export const serviceArea = "Melbourne and most of Victoria";
 export const siteDescription =
-  "Recycle retired IT, recover value from eligible components and arrange secure data destruction with Recore. Serving Melbourne and most of Victoria.";
+  `Recycle retired IT, recover value from eligible components and arrange secure data destruction with Recore. Serving ${serviceArea}.`;
 
 export const socialProfiles = {
   linkedin: "https://www.linkedin.com/company/recore-cycle",
@@ -33,6 +34,7 @@ export const organization = {
   description: siteDescription,
   url: siteUrl,
   "@id": `${siteUrl}/#organisation`,
+  areaServed: serviceArea,
   sameAs: Object.values(socialProfiles),
   logo: `${siteUrl}/icon.svg`,
 };

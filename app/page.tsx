@@ -6,7 +6,7 @@ import SiteFooter from "./site-footer";
 import ProductFinder from "./product-finder";
 import EnquiryComposer from "./enquiry-composer";
 import { categories, enquiryUrl, faqs } from "./recycling-content";
-import { organization, siteDescription, siteTitle, siteUrl } from "./site-config";
+import { organization, serviceArea, siteDescription, siteTitle, siteUrl } from "./site-config";
 import { contactDetails } from "./contact-details";
 
 const dataDestructionDescription =
@@ -59,6 +59,7 @@ export default function Home() {
         name: "E-waste recycling and computer component recovery",
         ...(siteUrl ? { "@id": `${siteUrl}/#recycling-service`, url: `${siteUrl}/#services` } : {}),
         provider: { "@id": organization["@id"] },
+        areaServed: serviceArea,
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Recycling categories",
@@ -75,8 +76,9 @@ export default function Home() {
         "@type": "Service",
         "@id": `${siteUrl}/#data-destruction-service`,
         name: "Secure data destruction",
-        url: `${siteUrl}/#security`,
+        url: `${siteUrl}/#data-destruction-service`,
         provider: { "@id": organization["@id"] },
+        areaServed: serviceArea,
         description: dataDestructionDescription,
       },
       {
@@ -235,9 +237,10 @@ export default function Home() {
                   text: dataDestructionDescription,
                   link: "Explore data destruction",
                   href: "#security",
+                  id: "data-destruction-service",
                 },
               ].map((service) => (
-                <article className="service-card" key={service.title}>
+                <article className="service-card" id={service.id} key={service.title}>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
                   <a className="text-link" href={service.href}>
@@ -285,15 +288,12 @@ export default function Home() {
         <section className="recovery-band">
           <div className="container recovery-band-inner">
             <span className="eyebrow">THE RECORE APPROACH</span>
-            <h2>
-              There’s more to old technology
-              <br />
-              than what’s been left behind.
-            </h2>
+            <h2>IT recycling for office moves, upgrades and clear-outs.</h2>
             <p>
-              Whole devices. Useful components. Recoverable materials.
-              <br />
-              We start by understanding what you have.
+              Recore helps businesses across {serviceArea} retire old equipment.
+              Send us your equipment list, approximate quantities and postcode.
+              We’ll confirm what we can accept, whether any components may have
+              recovery value, and which handover options are available.
             </p>
             <a className="text-link" href="#contact">
               Let’s find the next step <span aria-hidden="true">↗</span>
