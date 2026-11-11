@@ -1,16 +1,38 @@
-// Only a verified public origin should be used for canonicals, never a preview hostname.
-function publicOrigin() {
-  const value = process.env.NEXT_PUBLIC_SITE_URL;
-  if (!value) return undefined;
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.username || url.password)
-      return undefined;
-    return url.origin;
-  } catch {
-    return undefined;
-  }
-}
-export const siteUrl = publicOrigin();
+import { contactDetails } from "./contact-details";
+
+// Confirmed public domain. Keep canonical identity independent of preview hosts and old deployment settings.
+export const siteUrl = "https://www.recore-cycle.com";
+export const siteTitle = "Recore | E-waste Recycling & Data Destruction Melbourne";
 export const siteDescription =
-  "Recycle computers, laptops, printers, monitors, servers and computer components with Recore. Enquire about e-waste recovery, scrap quotes and data destruction.";
+  "Recycle retired IT, recover value from eligible components and arrange secure data destruction with Recore. Serving Melbourne and most of Victoria.";
+
+export const socialProfiles = {
+  linkedin: "https://www.linkedin.com/company/recore-cycle",
+  facebook: "https://www.facebook.com/recorecycle/",
+  instagram: "https://www.instagram.com/recorecycle/",
+};
+
+export const organization = {
+  "@type": "LocalBusiness",
+  name: "Recore",
+  telephone: contactDetails.phoneHref.replace("tel:", ""),
+  email: contactDetails.email,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer enquiries",
+    email: contactDetails.alternateEmail,
+    telephone: contactDetails.phoneHref.replace("tel:", ""),
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: contactDetails.streetAddress,
+    addressLocality: contactDetails.locality,
+    addressRegion: "VIC",
+    addressCountry: "AU",
+  },
+  description: siteDescription,
+  url: siteUrl,
+  "@id": `${siteUrl}/#organisation`,
+  sameAs: Object.values(socialProfiles),
+  logo: `${siteUrl}/icon.svg`,
+};

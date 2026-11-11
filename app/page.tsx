@@ -1,10 +1,16 @@
+import Link from "next/link";
+import BlogPreview from "./blog-preview";
 import Image from "next/image";
 import SiteHeader from "./site-header";
 import SiteFooter from "./site-footer";
 import ProductFinder from "./product-finder";
 import EnquiryComposer from "./enquiry-composer";
 import { categories, enquiryUrl, faqs } from "./recycling-content";
-import { siteUrl } from "./site-config";
+import { organization, siteDescription, siteTitle, siteUrl } from "./site-config";
+import { contactDetails } from "./contact-details";
+
+const dataDestructionDescription =
+  "Arrange secure handling for hard drives, SSDs and other data-bearing equipment. Ask about physical destruction or verified software erasure for suitable drives, and confirm what records are available for your job.";
 
 const steps = [
   [
@@ -25,17 +31,34 @@ export default function Home() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        name: "Recore",
-        description:
-          "E-waste recycling, computer component recovery and data destruction enquiries.",
-        ...(siteUrl ? { url: siteUrl, "@id": `${siteUrl}/#organisation` } : {}),
-      },
+      organization,
+      ...(siteUrl ? [
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          url: siteUrl,
+          name: "Recore",
+          publisher: { "@id": `${siteUrl}/#organisation` },
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${siteUrl}/#webpage`,
+          url: siteUrl,
+          name: siteTitle,
+          description: siteDescription,
+          isPartOf: { "@id": `${siteUrl}/#website` },
+          about: { "@id": `${siteUrl}/#organisation` },
+          mainEntity: [
+            { "@id": `${siteUrl}/#recycling-service` },
+            { "@id": `${siteUrl}/#data-destruction-service` },
+          ],
+        },
+      ] : []),
       {
         "@type": "Service",
         name: "E-waste recycling and computer component recovery",
-        provider: { "@type": "Organization", name: "Recore" },
+        ...(siteUrl ? { "@id": `${siteUrl}/#recycling-service`, url: `${siteUrl}/#services` } : {}),
+        provider: { "@id": organization["@id"] },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Recycling categories",
@@ -47,6 +70,14 @@ export default function Home() {
               : {}),
           })),
         },
+      },
+      {
+        "@type": "Service",
+        "@id": `${siteUrl}/#data-destruction-service`,
+        name: "Secure data destruction",
+        url: `${siteUrl}/#security`,
+        provider: { "@id": organization["@id"] },
+        description: dataDestructionDescription,
       },
       {
         "@type": "FAQPage",
@@ -64,7 +95,7 @@ export default function Home() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main-content">
+      <main id="main-content" className="landing-page">
         <section className="hero" id="top">
           <div className="container hero-grid">
             <div className="hero-copy">
@@ -72,22 +103,20 @@ export default function Home() {
                 E-WASTE RECYCLING & RESOURCE RECOVERY
               </span>
               <h1>
-                <span className="sr-only">E-waste recycling. </span>Old
-                technology.
+                E-waste recycling.
                 <br />
                 <span>New possibilities.</span>
               </h1>
               <p>
-                From a box of circuit boards to a warehouse of retired IT.
-                Recore helps you find a better way forward for computers, office
-                equipment and electronic components.
+                Clear out retired IT, recover value from eligible components
+                and protect the data left on your drives. Based in Oakleigh
+                South, Recore helps businesses across Melbourne and most of
+                Victoria recycle retired equipment and arrange secure data
+                destruction.
               </p>
               <div className="hero-actions">
                 <a className="button" href="#products">
                   Find what you can recycle <span aria-hidden="true">↗</span>
-                </a>
-                <a className="text-link" href="#contact">
-                  Ask about your equipment <span aria-hidden="true">↗</span>
                 </a>
               </div>
               <div className="hero-note">
@@ -105,30 +134,58 @@ export default function Home() {
                   sizes="(max-width: 800px) 100vw, 50vw"
                 />
               </div>
-              <figcaption>
-                <span>Tomorrow, recovered.</span>
-              </figcaption>
-              <span className="visual-index" aria-hidden="true">
-                RE / 01
-              </span>
             </figure>
           </div>
         </section>
         <div className="intro-strip">
           <div className="container">
-            <p>A clearer path for your retired technology.</p>
+            <p><a className="certification-link" href="#certifications">ISO certifications at YP ECYCLE</a></p>
             <span>Equipment recycling</span>
             <span>Component recovery</span>
-            <span>Data destruction enquiries</span>
+            <span>Secure data destruction</span>
           </div>
         </div>
+
+        <section className="section services-section certification-section" id="certifications">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <h2>ISO and e-waste certifications</h2>
+              </div>
+              <div>
+                <p>Our sister company, YP ECYCLE, lists certifications for quality, environmental management, workplace safety and e-waste handling.</p>
+                <a
+                  className="text-link"
+                  href="https://ypecycle.com.au/about-yp-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View YP ECYCLE’s certificate documents <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+            <dl className="certification-grid">
+              {[
+                ["ISO 9001", "Quality management"],
+                ["ISO 14001", "Environmental management"],
+                ["ISO 45001", "Occupational health and safety"],
+                ["AS/NZS 5377", "E-waste collection, storage, transport and treatment"],
+              ].map(([standard, scope]) => (
+                <div key={standard}>
+                  <dt>{standard}</dt>
+                  <dd>{scope}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
 
         <section className="section" id="products">
           <div className="container">
             <div className="section-heading">
               <div>
                 <span className="eyebrow">01 / WHAT WE RECYCLE</span>
-                <h2>More than computer scrap.</h2>
+                <h2>What can you recycle?</h2>
               </div>
               <p>
                 Find your equipment below. Every load starts with an assessment,
@@ -139,11 +196,7 @@ export default function Home() {
             <div className="help-note">
               <span>Not sure where your items fit?</span>
               <a
-                href={enquiryUrl(
-                  "Hi Recore, can you help identify the recycling options for my equipment? I can share some photos.",
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
               >
                 Send us a photo <span aria-hidden="true">↗</span>
               </a>
@@ -155,11 +208,8 @@ export default function Home() {
           <div className="container">
             <div className="section-heading">
               <div>
-                <span className="eyebrow">02 / THE RIGHT SERVICE</span>
-                <h2>
-                  One place to start.
-                  <br />A considered next step.
-                </h2>
+                <span className="eyebrow">02 / OUR SERVICES</span>
+                <h2>Choose the right service.</h2>
               </div>
               <p>
                 Clearing an office, managing business assets or sorting valuable
@@ -169,31 +219,25 @@ export default function Home() {
             <div className="service-grid">
               {[
                 {
-                  num: "01",
                   title: "Equipment recycling",
                   text: "Desktops, laptops, printers, monitors and infrastructure. Share your equipment list to plan a suitable recycling handover.",
                   link: "Explore equipment",
                   href: "#products",
                 },
                 {
-                  num: "02",
                   title: "Component & scrap recovery",
                   text: "PCBs, processors, memory and selected computer scrap assessed for material type, grade, quantity and recovery value.",
                   link: "Request a scrap quote",
-                  href: enquiryUrl(
-                    "Hi Recore, I'd like a quote for computer scrap and components.",
-                  ),
+                  href: "#contact",
                 },
                 {
-                  num: "03",
-                  title: "Data-aware IT retirement",
-                  text: "Put data handling on the plan before equipment leaves your control. Discuss media, custody, destruction methods and required records.",
+                  title: "Secure data destruction",
+                  text: dataDestructionDescription,
                   link: "Explore data destruction",
                   href: "#security",
                 },
               ].map((service) => (
-                <article className="service-card" key={service.num}>
-                  <span className="service-number">{service.num} /</span>
+                <article className="service-card" key={service.title}>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
                   <a className="text-link" href={service.href}>
@@ -206,71 +250,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section security-section" id="security">
-          <div className="container security-grid">
-            <div>
-              <span className="eyebrow">THE DATA MATTERS, TOO</span>
-              <h2>
-                Retire the equipment.
-                <br />
-                <span>Protect what’s on it.</span>
-              </h2>
-              <p>
-                Computers, servers and even office printers can hold sensitive
-                information. Plan data destruction before recycling, with a
-                method suited to the media and the records your organisation
-                needs.
-              </p>
-              <a
-                className="button"
-                href={enquiryUrl(
-                  "Hi Recore, I'd like to discuss data destruction before recycling equipment.",
-                )}
-              >
-                Discuss data destruction <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-            <div className="security-checklist">
-              <span className="security-label">BEFORE THE HANDOVER</span>
-              {[
-                [
-                  "01",
-                  "Identify the media",
-                  "Separate hard drives, SSDs and other storage. Flag any devices that may contain data.",
-                ],
-                [
-                  "02",
-                  "Agree the handling",
-                  "Confirm the service method, custody arrangements and the location of the work.",
-                ],
-                [
-                  "03",
-                  "Define the evidence",
-                  "Agree any asset records, reports or certificates your job requires before work begins.",
-                ],
-              ].map(([n, title, text]) => (
-                <div className="security-step" key={n}>
-                  <span>{n}</span>
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="section" id="process">
           <div className="container">
             <div className="section-heading">
               <div>
                 <span className="eyebrow">03 / HOW IT WORKS</span>
-                <h2>
-                  Less uncertainty.
-                  <br />
-                  More room to move.
-                </h2>
+                <h2>From assessment to handover.</h2>
               </div>
               <p>
                 A useful first conversation makes the rest simpler. Here’s what
@@ -319,16 +304,16 @@ export default function Home() {
         <section className="section" id="faq">
           <div className="container faq-layout">
             <div>
-              <span className="eyebrow">04 / GOOD QUESTIONS</span>
+              <span className="eyebrow">04 / FAQS</span>
               <h2>
-                A little clarity,
+                E-waste recycling:
                 <br />
-                before you start.
+                your questions answered.
               </h2>
               <p>
                 Can’t see your item listed? A photo is a good place to start.
               </p>
-              <a className="text-link" href={enquiryUrl()}>
+              <a className="text-link" href="#contact">
                 Ask Recore <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -346,17 +331,21 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section services-section" id="blog">
+          <div className="container">
+            <div className="section-heading">
+              <h2>From the Recore Blogs</h2>
+              <Link className="text-link" href="/blogs">View all articles ↗</Link>
+            </div>
+            <BlogPreview nested />
+          </div>
+        </section>
+
         <section className="section contact-section" id="contact" tabIndex={-1}>
           <div className="container contact-grid">
             <div className="contact-intro">
-              <span className="eyebrow">LET’S CLEAR THE WAY</span>
-              <h2>
-                A few items.
-                <br />
-                An entire IT refresh.
-                <br />
-                <span>Let’s talk.</span>
-              </h2>
+              <span className="eyebrow">CONTACT US</span>
+              <h2>Tell us about your <span>retired IT.</span></h2>
               <p>
                 Tell us what you have and where it is. We’ll help clarify
                 suitability, the service you need and the next practical step.
@@ -370,7 +359,7 @@ export default function Home() {
                 <div>
                   <span>02</span>
                   <strong>Choose your channel</strong>
-                  <small>Send the full enquiry by email or continue in WhatsApp.</small>
+                  <small>Email your details and photos through the form, or start a WhatsApp chat.</small>
                 </div>
                 <div>
                   <span>03</span>
@@ -379,15 +368,41 @@ export default function Home() {
                 </div>
               </div>
               <div className="contact-direct">
-                <span>DIRECT WHATSAPP</span>
+                <span>WHATSAPP</span>
                 <a
                   href={enquiryUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  +61 491 570 006 <span aria-hidden="true">↗</span>
+                  Chat on WhatsApp <span aria-hidden="true">↗</span>
                 </a>
               </div>
+              <div className="contact-direct">
+                <span>CALL US</span>
+                <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
+              </div>
+              <div className="contact-direct">
+                <span>EMAIL</span>
+                <div className="contact-emails">
+                  <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+                  <a href={`mailto:${contactDetails.alternateEmail}`}>{contactDetails.alternateEmail}</a>
+                </div>
+              </div>
+              <div className="contact-direct">
+                <span>ADDRESS</span>
+                <a href={contactDetails.mapsUrl} target="_blank" rel="noopener noreferrer">
+                  {contactDetails.address} <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <iframe
+                className="contact-map"
+                src={contactDetails.mapsEmbedUrl}
+                title={`Google map of Recore at ${contactDetails.address}`}
+                width={560}
+                height={260}
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
               <p className="contact-note">
                 Please confirm an appointment before arranging delivery. Service
                 availability and any charges are assessed for your location and

@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { Resend, type Attachment } from "resend";
+import { Resend } from "resend";
+import { contactDetails } from "../../contact-details";
+import { gmailConfiguration, sendEnquiry } from "../../enquiry-delivery";
+
+export const maxDuration = 60;
 
 const MAX_REQUEST_BYTES = 4 * 1024 * 1024;
 const MAX_IMAGES = 10;
@@ -39,10 +43,6 @@ function escapeHtml(value: string) {
         "'": "&#039;",
       })[character]!,
   );
-}
-
-function configuredValue(value: string | undefined) {
-  return value?.trim() ?? "";
 }
 
 function isSupportedImageType(value: string): value is SupportedImageType {
@@ -162,7 +162,7 @@ export async function POST(request: Request) {
     return validationError("Images must be 3 MB or less combined.");
   }
 
-  const attachments: Attachment[] = [];
+  const attachments: { content: Buffer; filename: string; contentType: string }[] = [];
   for (const [index, image] of images.entries()) {
     if (!isSupportedImageType(image.type)) {
       return validationError("Only JPEG, PNG and WebP images are accepted.");
@@ -182,15 +182,12 @@ export async function POST(request: Request) {
     });
   }
 
-  const apiKey = configuredValue(process.env.RESEND_API_KEY);
-  const from = configuredValue(process.env.RESEND_FROM_EMAIL);
-  const to = configuredValue(process.env.RESEND_TO_EMAIL);
-  if (!apiKey || !from || !emailPattern.test(to)) {
-    console.error("Enquiry email is not configured", {
-      hasApiKey: Boolean(apiKey),
-      hasFrom: Boolean(from),
-      hasValidRecipient: emailPattern.test(to),
-    });
+  const to = contactDetails.email;
+  const delivery = gmailConfiguration(process.env, to);
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from = process.env.RESEND_FROM_EMAIL?.trim();
+  if (!delivery && (!apiKey || !from)) {
+    console.error("Enquiry delivery is not configured");
     return NextResponse.json(
       { error: "Online enquiry delivery is temporarily unavailable." },
       { status: 503 },
@@ -230,32 +227,45 @@ export async function POST(request: Request) {
     <p style="white-space: pre-wrap">${escapeHtml(message)}</p>
   `;
 
-  const resend = new Resend(apiKey);
-  const { data, error } = await resend.emails.send(
-    {
-      from,
-      to,
-      ...(email ? { replyTo: email } : {}),
+  try {
+    const enquiry = {
+      replyTo: to,
       subject: `Recore enquiry: ${serviceLabel} — ${name.replace(/[\r\n]/g, " ")}`,
       text: plainText,
       html,
       attachments,
-      tags: [{ name: "source", value: "website-enquiry" }],
-    },
-    {
-      signal: AbortSignal.timeout(15_000),
-      idempotencyKey: `website-enquiry/${submissionId}`,
-    },
-  );
-
-  if (error || !data?.id) {
-    console.error("Resend rejected an enquiry email", {
-      name: error?.name ?? "missing_email_id",
-      statusCode: error?.statusCode ?? null,
+    };
+    if (delivery) {
+      await sendEnquiry(delivery, {
+        ...enquiry,
+        messageId: `<website-enquiry-${submissionId}@${delivery.user.split("@")[1]}>`,
+      });
+    } else {
+      const result = await new Resend(apiKey!).emails.send({
+        ...enquiry,
+        from: from!,
+        to,
+        tags: [{ name: "source", value: "website-enquiry" }],
+      }, {
+        signal: AbortSignal.timeout(15_000),
+        idempotencyKey: `website-enquiry/${submissionId}`,
+      });
+      if (result.error || !result.data?.id) {
+        throw Object.assign(new Error("Resend enquiry delivery failed"), {
+          code: result.error?.name,
+          responseCode: result.error?.statusCode,
+        });
+      }
+    }
+  } catch (error) {
+    const failure = error as { code?: string; responseCode?: number };
+    console.error("Enquiry delivery failed", {
+      code: failure?.code ?? "unknown",
+      responseCode: failure?.responseCode ?? null,
     });
     return NextResponse.json(
       { error: "We could not send your enquiry right now." },
-      { status: error?.statusCode === 429 ? 429 : 502 },
+      { status: 502 },
     );
   }
 

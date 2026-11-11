@@ -10,7 +10,6 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
-import { enquiryUrl } from "./recycling-content";
 
 const MAX_IMAGES = 10;
 const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
@@ -39,7 +38,6 @@ function formContactIsValid(form: HTMLFormElement) {
 }
 
 export default function EnquiryComposer() {
-  const formRef = useRef<HTMLFormElement>(null);
   const submissionIdRef = useRef<string | null>(null);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -155,46 +153,18 @@ export default function EnquiryComposer() {
     }
   }
 
-  function continueInWhatsApp() {
-    const form = formRef.current;
-    if (!form || !formContactIsValid(form) || fileError) return;
-
-    const values = new FormData(form);
-    const serviceSelect = form.elements.namedItem("service") as HTMLSelectElement;
-    const contact = [
-      String(values.get("phone") ?? "").trim(),
-      String(values.get("email") ?? "").trim(),
-    ]
-      .filter(Boolean)
-      .join(" / ");
-    const photoNote = images.length
-      ? `\nPhotos: I have ${images.length} image${images.length === 1 ? "" : "s"} ready to attach in WhatsApp.`
-      : "";
-    const message = [
-      "Hi Recore, I'd like to make an enquiry.",
-      `Name: ${String(values.get("name") ?? "").trim()}`,
-      `Contact: ${contact}`,
-      `Business: ${String(values.get("company") ?? "").trim() || "Not provided"}`,
-      `Service: ${serviceSelect.options[serviceSelect.selectedIndex]?.text ?? "Not sure"}`,
-      `Location: ${String(values.get("location") ?? "").trim()}`,
-      `Equipment and quantity: ${String(values.get("message") ?? "").trim()}${photoNote}`,
-    ].join("\n");
-
-    window.open(enquiryUrl(message), "_blank", "noopener,noreferrer");
-  }
-
   const totalImageBytes = images.reduce((total, file) => total + file.size, 0);
 
   return (
-    <form className="enquiry-form" onSubmit={submitEnquiry} ref={formRef}>
+    <form className="enquiry-form" onSubmit={submitEnquiry}>
       <div className="enquiry-heading">
         <span>RECOVERY INTAKE / 01</span>
         <strong>{images.length ? `${images.length} PHOTO${images.length === 1 ? "" : "S"} READY` : "READY FOR DETAILS"}</strong>
       </div>
       <h3>Show us what needs a next step.</h3>
       <p>
-        Add the basics and, if useful, a few clear photos. Choose email to send
-        everything together or continue the conversation in WhatsApp.
+        Tell us what you have and add photos if useful. We’ll review your
+        enquiry and get back to you using the contact details you provide.
       </p>
 
       <div className="enquiry-field-grid">
@@ -356,31 +326,13 @@ export default function EnquiryComposer() {
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="submission-channels">
-        <button
-          className="button email-submit"
-          type="submit"
-          disabled={status === "sending"}
-        >
-          <span className="channel-label">EMAIL ENQUIRY</span>
-          {status === "sending" ? "Sending…" : "Send details & photos"}
-          <span aria-hidden="true">↗</span>
-        </button>
-        <button
-          className="button whatsapp-submit"
-          type="button"
-          onClick={continueInWhatsApp}
-          disabled={status === "sending"}
-        >
-          <span className="channel-label">WHATSAPP</span>
-          Continue in WhatsApp
-          <span aria-hidden="true">↗</span>
-        </button>
-      </div>
+      <button className="button enquiry-submit" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Send enquiry by email"}
+        <span aria-hidden="true">↗</span>
+      </button>
       <small className="submission-note">
-        Email sends selected photos securely with the enquiry. WhatsApp opens a
-        prepared message; attach the selected photos again inside WhatsApp.
-        Please do not include passwords, personal records or sensitive data.
+        Selected photos are included in your email enquiry. Please leave out
+        passwords, personal records and sensitive data.
       </small>
 
       {status === "success" && (
@@ -390,7 +342,7 @@ export default function EnquiryComposer() {
       )}
       {status === "error" && (
         <p className="enquiry-status error" role="alert">
-          {errorMessage} Please try again or use WhatsApp.
+          {errorMessage} Please try again.
         </p>
       )}
     </form>

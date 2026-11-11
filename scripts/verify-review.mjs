@@ -8,7 +8,8 @@ assert.match(html, /<form[^>]+class="enquiry-form"/, "Online enquiry form render
 assert.match(html, /name="email"/, "Enquiry form collects a reply email");
 assert.match(html, /name="phone"/, "Enquiry form collects a contact number");
 assert.match(html, /id="images"[^>]+multiple/, "Enquiry form accepts multiple images");
-assert.match(html, /Continue in WhatsApp/, "Enquiry form offers WhatsApp submission");
+assert.match(html, /Send enquiry by email/, "Enquiry form submits by email");
+assert.match(html, /Chat on WhatsApp/, "WhatsApp is available as a separate chat link");
 const categories = [
   ...new Set(
     [...html.matchAll(/href="(\/recycling\/[a-z-]+)"/g)].map(
@@ -97,8 +98,8 @@ const undelivered = await fetch(`${base}/api/enquiry`, {
 assert.equal(
   undelivered.status,
   503,
-  "Unconfigured Resend delivery never reports success",
+  "Unconfigured email delivery never reports success",
 );
 console.log(
-  `Verified ${titles.size} content pages, dual-channel enquiry form, image signature checks, crawl/social/image endpoints, category 404 and unconfigured delivery handling.`,
+  `Verified ${titles.size} content pages, email enquiry form and separate WhatsApp chat, image signature checks, crawl/social/image endpoints, category 404 and unconfigured delivery handling.`,
 );

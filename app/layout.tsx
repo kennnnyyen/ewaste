@@ -1,20 +1,25 @@
+import { Suspense } from "react";
+import PageScroll from "./page-scroll";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { siteDescription, siteUrl } from "./site-config";
+import { siteDescription, siteTitle, siteUrl } from "./site-config";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl ?? "http://localhost:3107"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Recore | E-waste, Computer & Office Equipment Recycling",
+    default: siteTitle,
     template: "%s | Recore",
   },
   description: siteDescription,
   applicationName: "Recore",
-  ...(siteUrl ? { alternates: { canonical: siteUrl } } : {}),
+  alternates: {
+    canonical: siteUrl,
+    types: { "text/plain": [{ url: "/llms.txt", title: "Recore business and service summary" }] },
+  },
   openGraph: {
     siteName: "Recore",
-    title: "Recore | E-waste, Computer & Office Equipment Recycling",
+    title: siteTitle,
     description: siteDescription,
     locale: "en_AU",
     ...(siteUrl ? { url: siteUrl } : {}),
@@ -22,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Recore | E-waste & IT Equipment Recycling",
+    title: siteTitle,
     description: siteDescription,
   },
 };
@@ -33,6 +38,9 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <body>
+        <Suspense fallback={null}>
+          <PageScroll />
+        </Suspense>
         {children}
         <Analytics />
       </body>

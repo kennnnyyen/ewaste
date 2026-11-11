@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import { contactDetails } from "./contact-details";
 
-const whatsappNumber = "61491570006";
+const whatsappNumber = contactDetails.whatsappNumber;
 // Replace with the Facebook business Page username or ID when it is ready.
 const messengerPage = "";
 const message = "Hi Recore, I'd like to enquire about computer scrap recycling or data destruction.";

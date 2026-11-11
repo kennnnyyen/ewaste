@@ -1,22 +1,43 @@
 # Recore
 
-> Recore provides a starting point for e-waste recycling, computer component recovery and data destruction enquiries. Acceptance and service arrangements are confirmed for each load.
+> Recore helps businesses in Melbourne and most of Victoria recycle retired IT, recover value from eligible computer components and arrange secure data destruction. Recore is based in Oakleigh South.
+
+## Quick answers
+- Equipment recycling: computers, laptops, printers, monitors, servers and selected networking equipment. Confirm acceptance before handover.
+- Component recovery: ask for an assessment of circuit boards, processors, memory, graphics cards and other eligible scrap. Recovery value depends on the load.
+- Secure data destruction: ask about physical destruction or verified software erasure for suitable drives. Confirm the method, handling requirements and available records for your job.
+- Get a quote: [Contact Recore](https://www.recore-cycle.com/#contact) with equipment types, approximate quantities, postcode and any data handling requirements. Photos are optional.
+
+## Business information
+- Website: https://www.recore-cycle.com/
+- Service area: Melbourne and most of Victoria. Confirm collection availability for your postcode.
+- Official profiles: [LinkedIn](https://www.linkedin.com/company/recore-cycle), [Facebook](https://www.facebook.com/recorecycle/), [Instagram](https://www.instagram.com/recorecycle/).
+- Address: 2 Price St, Oakleigh South, Victoria, Australia.
+- Phone: 0406 406 016 (+61 406 406 016).
+- Email: info@recore-cycle.com.
+- Alternative email: sales.recore@gmail.com.
+- Confirm acceptance, an appointment and handover arrangements before delivering equipment.
 
 ## Recycling guides
-- [Computers and laptops](/recycling/computers-and-laptops): desktops, laptops and all-in-one computers.
-- [Printers and office equipment](/recycling/printers-and-office-equipment): printers, scanners and electronic office equipment.
-- [Monitors and displays](/recycling/monitors-and-displays): computer displays; older or damaged screens require assessment.
-- [Servers and networking](/recycling/servers-and-networking): servers, switches, routers and selected infrastructure.
-- [Circuit boards](/recycling/circuit-boards): PCBs, motherboards and expansion cards.
-- [Processors, memory and graphics](/recycling/processors-memory-and-graphics): CPUs, RAM and GPUs.
-- [Hard drives and storage](/recycling/hard-drives-and-storage): HDDs, SSDs and storage media; discuss data handling before recycling.
-- [Cables and peripherals](/recycling/cables-and-peripherals): computer cables, keyboards, mice and selected accessories.
+- [Computers and laptops](https://www.recore-cycle.com/recycling/computers-and-laptops): desktops, laptops and all-in-one computers.
+- [Printers and office equipment](https://www.recore-cycle.com/recycling/printers-and-office-equipment): printers, scanners and electronic office equipment.
+- [Monitors and displays](https://www.recore-cycle.com/recycling/monitors-and-displays): computer displays, with older or damaged screens assessed separately.
+- [Servers and networking](https://www.recore-cycle.com/recycling/servers-and-networking): servers, switches, routers and selected infrastructure.
+- [Circuit boards](https://www.recore-cycle.com/recycling/circuit-boards): PCBs, motherboards and expansion cards.
+- [Processors, memory and graphics](https://www.recore-cycle.com/recycling/processors-memory-and-graphics): CPUs, RAM and GPUs.
+- [Hard drives and storage](https://www.recore-cycle.com/recycling/hard-drives-and-storage): HDDs, SSDs and storage media. Discuss data handling before recycling.
+- [Cables and peripherals](https://www.recore-cycle.com/recycling/cables-and-peripherals): computer cables, keyboards, mice and selected accessories.
 
 ## Services and enquiries
-- [Services](/#services)
-- [Data destruction enquiries](/#security)
-- [Frequently asked questions](/#faq)
-- [Contact Recore](/#contact): equipment descriptions, photos, approximate quantities and location help Recore assess a load.
+- [Services](https://www.recore-cycle.com/#services)
+- [Data destruction service overview](https://www.recore-cycle.com/#services): discuss physical destruction or verified software erasure for suitable drives, and confirm available documentation.
+- [Certifications](https://www.recore-cycle.com/#certifications): ISO 9001, ISO 14001, ISO 45001 and AS/NZS 5377 are listed by sister company YP ECYCLE.
+- [Frequently asked questions](https://www.recore-cycle.com/#faq)
+- [Contact Recore](https://www.recore-cycle.com/#contact): equipment descriptions, photos, approximate quantities and location help Recore assess a load.
+
+## Blogs
+- [Office IT recycling checklist](https://www.recore-cycle.com/blogs/office-it-recycling-checklist)
+- [Hard drive destruction vs verified software erasure](https://www.recore-cycle.com/blogs/hard-drive-destruction-vs-software-erasure)
 
 ## Important limits
-Prices, collection availability, drop-off arrangements, fees and acceptance depend on the specific job. Confirm these with Recore before transport or handover. No public street address, operating hours, certification ownership or nationwide service coverage is asserted on this site. Website equipment artwork is illustrative.
+Prices, recovery value, collection availability, delivery arrangements and acceptance depend on the specific job. Confirm these with Recore before transport or handover. Opening hours, service methods and collection coverage must be confirmed directly. Website equipment artwork is illustrative.

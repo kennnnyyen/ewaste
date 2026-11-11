@@ -3,8 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import SiteHeader from "../../site-header";
 import SiteFooter from "../../site-footer";
-import { categories, enquiryUrl } from "../../recycling-content";
-import { siteUrl } from "../../site-config";
+import { categories } from "../../recycling-content";
+import { organization, siteUrl } from "../../site-config";
 
 export function generateStaticParams() {
   return categories.map(({ slug }) => ({ slug }));
@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${category.title} | Recore`,
       description: category.summary,
       ...(url ? { url } : {}),
+      ...(siteUrl ? { images: [{ url: `${siteUrl}/opengraph-image`, width: 1200, height: 630, alt: "Recore e-waste and computer recycling" }] } : {}),
       type: "website",
       locale: "en_AU",
       siteName: "Recore",
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${category.title} | Recore`,
       description: category.summary,
+      ...(siteUrl ? { images: [`${siteUrl}/opengraph-image`] } : {}),
     },
   };
 }
@@ -50,11 +52,12 @@ export default async function CategoryPage({ params }: Props) {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
+      organization,
       {
         "@type": "Service",
         name: category.title,
         description: category.summary,
-        provider: { "@type": "Organization", name: "Recore" },
+        provider: organization,
         ...(siteUrl ? { url: `${siteUrl}/recycling/${slug}` } : {}),
       },
       ...(siteUrl
@@ -103,15 +106,13 @@ export default async function CategoryPage({ params }: Props) {
             </span>
             <h1>{category.title}</h1>
             <p>{category.summary}</p>
-            <a
+            <Link
               className="button"
-              href={enquiryUrl(
-                `Hi Recore, I'd like to enquire about ${category.title.toLowerCase()}.`,
-              )}
+              href="/#contact"
             >
               Ask about {category.shortTitle.toLowerCase()}{" "}
               <span aria-hidden="true">↗</span>
-            </a>
+            </Link>
           </div>
         </section>
         <section className="section">

@@ -1,3 +1,5 @@
+import { contactDetails } from "./contact-details";
+
 export type RecyclingCategory = {
   slug: string;
   title: string;
@@ -191,6 +193,21 @@ export const categories: RecyclingCategory[] = [
 
 export const faqs = [
   {
+    question: "Where is Recore based?",
+    answer:
+      `Recore is based at ${contactDetails.address}, in Melbourne, Victoria. Call ${contactDetails.phone} or email ${contactDetails.email} to discuss your equipment. Confirm acceptance and an appointment before arranging delivery.`,
+  },
+  {
+    question: "How do I get an e-waste recycling quote?",
+    answer:
+      "Use the contact form to share your equipment types, approximate quantities, condition and suburb or postcode. You can attach up to 10 JPEG, PNG or WebP photos, limited to 2 MB each and 3 MB combined. Recore assesses the load before confirming acceptance, any recovery value or charges, and handover arrangements.",
+  },
+  {
+    question: "Is e-waste recycling free, or will I be paid for scrap?",
+    answer:
+      "There is no single price for every load. Charges or recovery value depend on the equipment, material grade, quantity, condition, location and service requirements. Ask Recore for an assessment and confirm the quote and payment terms before arranging transport or handover.",
+  },
+  {
     question: "What e-waste does Recore recycle?",
     answer:
       "Recore assesses computers, laptops, all-in-one PCs, printers, monitors, servers, networking equipment, circuit boards, CPUs, RAM, GPUs, hard drives, cables and selected peripherals. Send an item list or photos so we can confirm acceptance and any handling requirements for your load.",
@@ -222,7 +239,7 @@ export const faqs = [
   },
 ];
 
-export const whatsappNumber = "61491570006";
+export const whatsappNumber = contactDetails.whatsappNumber;
 export function enquiryUrl(
   message = "Hi Recore, I'd like to enquire about recycling IT equipment.",
 ) {

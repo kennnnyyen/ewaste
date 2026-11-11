@@ -48,6 +48,8 @@ export default function SiteHeader() {
             ["Our services", "/#services"],
             ["How it works", "/#process"],
             ["FAQs", "/#faq"],
+            ["Blogs", "/blogs"],
+            ["Contact us", "/#contact"],
           ].map(([label, href]) => (
             <Link href={href} key={href} onClick={() => setOpen(false)}>
               {label}

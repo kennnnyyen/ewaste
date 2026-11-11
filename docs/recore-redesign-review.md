@@ -15,7 +15,7 @@ Reference: https://www.theboardguy.com.au/ (retrieved 7 November 2026). The refe
 - Dedicated, server-rendered content for eight categories, unique titles and descriptions, one H1 per page, related links and breadcrumbs.
 - Organisation, Service and FAQPage JSON-LD using the same visible content. No unverified certification, address, ratings or service-area claims.
 - Open Graph image and social metadata, robots.txt, sitemap.xml and llms.txt.
-- Canonical URLs and sitemap entries activate when a verified HTTPS origin is set in `NEXT_PUBLIC_SITE_URL`. With no origin, sitemap.xml is intentionally empty. Local social-image URLs use the preview origin until configured.
+- Updated 8 November: canonical URLs, sitemap entries and social images default to the verified current public origin `https://ewaste-nine-kohl.vercel.app`. Override `NEXT_PUBLIC_SITE_URL` when the final HTTPS domain is verified; preview deployment hostnames are not used as canonicals. See [the follow-up review](seo-navigation-review-2026-11-08.md).
 - Provisional domain suggested by the user: `recore-cycle.com`. Ownership and final selection remain unconfirmed. Do not publish it as the canonical domain yet.
 - These changes improve content clarity and machine readability. Search rankings, indexing and AI citations have not been measured. FAQ markup does not guarantee a search rich result; llms.txt does not guarantee AI discovery.
 
