@@ -11,5 +11,6 @@ description: Release approved Recore website content and publish Recore business
    - **Facebook and Instagram:** Use Meta Business Suite for the Recore E-Waste Recycling Facebook Page and `@recorecycle` Instagram account. Select the requested channels and customise the captions by platform. Use the Facebook caption for a clickable article link and Instagram for an image-led caption with a clear way to find the article.
    - **LinkedIn:** Use the Recore E-Waste Recycling company Page at `https://www.linkedin.com/company/recore-cycle/`. Publish as the company. Include the article link, artwork and descriptive image alt text when available.
 4. Confirm the exact post on each requested channel using the publication result or published-content list, and capture the direct public links. If submission times out or the state is unclear, check the published list before retrying. Report each channel's result and any unresolved blocker.
+5. Verify that each social caption includes Recore’s public phone number and primary email from `app/contact-details.ts`. When asked to add or correct contact details on an existing post, edit its caption in place and confirm the saved contact line on each requested channel.
 
 Use existing authorised access. Keep credentials out of content, files, commits and responses. Only submit to the channels authorised for the current item.
