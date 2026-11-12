@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 // Read-only checks: safe to run against a local preview or the public site.
 const base = process.env.REVIEW_BASE_URL ?? "http://127.0.0.1:3107";
 const origin = process.env.REVIEW_SITE_ORIGIN ?? "https://www.recore-cycle.com";
+const businessAddress = "2 Price St, Oakleigh South VIC 3167, Australia";
 const pages = new Map();
 async function read(path) {
   if (pages.has(path)) return pages.get(path);
@@ -46,15 +47,17 @@ for (const path of ["/", dataDestructionPath, ...categoryPaths]) {
   assert.equal(business.contactPoint.email, "sales.recore@gmail.com", `${path}: alternative email`);
   assert.equal(business.address.streetAddress, "2 Price St", `${path}: confirmed street address`);
   assert.equal(business.address.addressLocality, "Oakleigh South", `${path}: confirmed locality`);
+  assert.equal(business.address.postalCode, "3167", `${path}: confirmed postcode`);
   const socialImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
   assert.ok(socialImage?.startsWith(`${origin}/`), `${path}: public social image`);
   if (path === "/") {
     for (const address of ["info@recore-cycle.com", "sales.recore@gmail.com"]) {
       assert.ok(html.includes(`href="mailto:${address}"`), `${path}: visible email ${address}`);
     }
-    assert.ok(html.includes("2 Price St, Oakleigh South"), `${path}: business address is visible`);
+    assert.ok(html.includes(businessAddress), `${path}: business address is visible`);
     assert.ok(html.includes("Recore | E-waste Recycling &amp; Data Destruction Melbourne"), "Local service title");
     assert.ok(html.includes("Where is Recore based?"), "Visible location FAQ");
+    assert.ok(html.includes(`q=${encodeURIComponent(businessAddress)}&amp;output=embed`), "Embedded map includes the full address");
     assert.ok(graph.some((node) => node["@type"] === "WebSite"), "Website identity");
     const faq = graph.find((node) => node["@type"] === "FAQPage");
     assert.equal(faq.mainEntity.length, [...html.matchAll(/<details(?:\s|>)/g)].length, "FAQ markup matches visible question count");
@@ -97,7 +100,7 @@ for (const path of ["/", dataDestructionPath, ...categoryPaths]) {
       } else {
         assert.equal(url.origin, "https://www.google.com", `${path}: known map destination`);
         assert.equal(url.pathname, "/maps/search/", `${path}: maps search link`);
-        assert.equal(url.searchParams.get("query"), "2 Price St, Oakleigh South, VIC, Australia", `${path}: confirmed map address`);
+        assert.equal(url.searchParams.get("query"), businessAddress, `${path}: confirmed map address`);
       }
       continue;
     }
@@ -123,7 +126,7 @@ for (const path of blogPaths) {
 }
 const llms = await read("/llms.txt");
 assert.ok(llms.includes(origin), "AI reference identifies the canonical site");
-assert.ok(llms.includes("2 Price St, Oakleigh South"), "AI reference uses the visible business address");
+assert.ok(llms.includes(businessAddress), "AI reference uses the visible business address");
 for (const path of [dataDestructionPath, ...categoryPaths]) assert.ok(llms.includes(`${origin}${path}`), `${path}: absolute guide reference`);
 assert.equal((await fetch(new URL("/recycling/unknown-category", base))).status, 404, "Unknown category is a real 404");
 console.log(`Verified ${titles.size} pages: metadata, structured data, sitemap, all rendered navigation links and CTA anchors.`);

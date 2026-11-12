@@ -195,7 +195,7 @@ export const faqs = [
   {
     question: "Where is Recore based?",
     answer:
-      `Recore is based at ${contactDetails.address}, in Melbourne, Victoria. Call ${contactDetails.phone} or email ${contactDetails.email} to discuss your equipment. Confirm acceptance and an appointment before arranging delivery.`,
+      `Recore is based at ${contactDetails.address}. Call ${contactDetails.phone} or email ${contactDetails.email} to discuss your equipment. Confirm acceptance and an appointment before arranging delivery.`,
   },
   {
     question: "How do I get an e-waste recycling quote?",
