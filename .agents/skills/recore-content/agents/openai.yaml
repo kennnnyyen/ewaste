@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare Recore Content"
+  short_description: "Draft Recore articles, artwork, and captions"
+  default_prompt: "Use $recore-content to prepare a Recore article and social captions for local review."

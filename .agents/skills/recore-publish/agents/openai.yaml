@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Recore Content"
+  short_description: "Publish approved Recore articles and social posts"
+  default_prompt: "Use $recore-publish to publish the approved Recore article and share it on our business channels."
