@@ -1,6 +1,79 @@
 import { dataDestructionPath } from "./data-destruction-content";
 
-export const articles = [
+type BlogImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+type BlogArticle = {
+  slug: string;
+  category: string;
+  title: string;
+  description: string;
+  image: BlogImage;
+  topics: string[];
+  example: string;
+  sections: { heading: string; text: string; illustration?: BlogImage }[];
+  checklist: string[];
+  references?: { label: string; href: string }[];
+  related: { label: string; href: string }[];
+};
+
+export const articles: BlogArticle[] = [
+  {
+    slug: "what-makes-old-computer-parts-worth-recycling",
+    category: "Component recovery",
+    title: "What makes old computer parts worth recycling?",
+    description: "Follow old computer parts from collection to recycling, see what recovered metals can become, and find out how to get a quote in Victoria.",
+    image: {
+      src: "/e-waste-recycling-lifecycle.webp",
+      alt: "A copper ribbon leads from retired computers through a sorting workshop to recovered metal and new components",
+      width: 1440,
+      height: 810,
+    },
+    topics: ["Computer scrap recycling", "Circuit board recycling", "CPU and RAM recycling", "E-waste recovery Victoria"],
+    example: "A Melbourne IT team clears a storeroom and finds a box of loose server memory, a stack of mixed motherboards and six intact desktops. It photographs the memory labels and both sides of a few representative boards, then lists the desktops separately and flags that they still contain drives. Recore can use that breakdown to assess the components and discuss data handling for the desktops.",
+    sections: [
+      {
+        heading: "From office clean-out to a second life",
+        text: "After collection, equipment can be sorted by type and condition. A tested graphics card or a set of compatible RAM may keep another computer running. If you plan to redeploy working equipment, record the model, condition and test result, and agree on how to handle any data-bearing drives. Parts unsuitable for reuse can go to specialist recyclers for dismantling, sorting and material recovery.",
+      },
+      {
+        heading: "What recovered metals can become",
+        text: "Motherboards contain copper tracks, and some contacts use a thin layer of gold to resist corrosion. Aluminium is commonly found in heat sinks. Once recovered and refined to the required grade, copper can go into electrical wiring or motor windings, and aluminium can go into new housings or brackets. The mix of metals varies between parts, so two boxes of the same weight can have different recovery values.",
+      },
+      {
+        heading: "Why proper handling matters for people and waterways",
+        text: "Reusing working parts keeps equipment in service for longer. Recovering metals for manufacturing can reduce demand for newly mined material. Unsafe dumping or burning of electronics can release pollutants into the air, soil and water, exposing workers and nearby communities. Victoria bans e-waste from landfill. Keeping electronics separate from general waste helps reduce these risks and makes material recovery possible.",
+        illustration: {
+          src: "/e-waste-recycling-community.webp",
+          alt: "A family and a cyclist use a path beside a Melbourne creek, with layers of soil and water visible in cross-section",
+          width: 1440,
+          height: 810,
+        },
+      },
+      {
+        heading: "What affects a computer scrap quote?",
+        text: "Recore looks at what you have, its grade, the quantity and condition, and current buying rates. Grade reflects the type and composition of the material. A box of identifiable server boards and a box of mixed boards with attached brackets may be assessed differently. Recore can confirm whether your load has recovery value, whether any charges apply and what the payment terms are before handover.",
+      },
+      {
+        heading: "Photograph what you already have",
+        text: "Group loose boards, CPUs, RAM and graphics cards where practical. Take photos of representative pieces in good light, including readable model markings and both sides of a few boards. Note approximate counts or weights, attached metal or batteries, and which equipment is still assembled. If everything is mixed or still installed, send photos of it as it is and ask Recore what preparation is needed.",
+      },
+    ],
+    checklist: ["Photos showing component types, labels and overall condition", "Approximate count or weight for each group and any intact equipment", "Collection suburb or postcode, preferred timeframe and any data-handling requirements"],
+    references: [
+      { label: "U.S. EPA guide to electronics reuse and recycling", href: "https://www.epa.gov/electronics-batteries-management/electronics-basic-information-research-and-initiatives" },
+      { label: "Victorian Government guidance on the e-waste ban", href: "https://www.vic.gov.au/e-waste-ban" },
+      { label: "World Health Organization fact sheet on e-waste and health", href: "https://www.who.int/news-room/fact-sheets/detail/electronic-waste-(e-waste)" },
+    ],
+    related: [
+      { href: "/recycling/circuit-boards", label: "Circuit board and motherboard recycling" },
+      { href: "/recycling/processors-memory-and-graphics", label: "CPU, RAM and graphics card recycling" },
+    ],
+  },
   {
     slug: "office-it-recycling-checklist",
     category: "IT recycling",
@@ -52,10 +125,10 @@ export const articles = [
     topics: ["Secure data destruction", "Hard drive destruction", "Verified software erasure", "SSD sanitisation"],
     example: "A business retiring 40 laptops wants to redeploy 25 and recycle the rest. It can ask about verified erasure for working drives intended for reuse and physical destruction for drives that have failed or must be destroyed under its policy. The asset register should show the outcome for each drive if serial-number tracking is required.",
     checklist: ["HDDs and SSDs, with model and condition where known", "Which drives should be kept for reuse", "Required method, custody records and evidence"],
-    reference: {
+    references: [{
       label: "NIST SP 800-88 Rev. 2, Guidelines for Media Sanitization",
       href: "https://csrc.nist.gov/pubs/sp/800/88/r2/final",
-    },
+    }],
     sections: [
       {
         heading: "Start with whether the drives will be reused",

@@ -80,10 +80,13 @@ export default async function ArticlePage({ params }: Props) {
             <h2>What this looks like in practice</h2>
             <p>{article.example}</p>
           </section>
-          {article.sections.map(({ heading, text }) => (
+          {article.sections.map(({ heading, text, illustration }) => (
             <section key={heading}>
               <h2>{heading}</h2>
               <p>{text}</p>
+              {illustration && (
+                <Image {...illustration} alt={illustration.alt} className="blog-article-image" sizes="(max-width: 820px) 100vw, 780px" />
+              )}
             </section>
           ))}
           <section className="blog-card">
@@ -92,12 +95,15 @@ export default async function ArticlePage({ params }: Props) {
               {article.checklist.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </section>
-          {article.reference && (
-            <p>
-              Further reading: <a className="text-link" href={article.reference.href} target="_blank" rel="noopener noreferrer">
-                {article.reference.label} ↗
-              </a>
-            </p>
+          {article.references && (
+            <section>
+              <h2>Further reading</h2>
+              <ul className="category-list">
+                {article.references.map(({ href, label }) => (
+                  <li key={href}><a className="text-link" href={href} target="_blank" rel="noopener noreferrer">{label} ↗</a></li>
+                ))}
+              </ul>
+            </section>
           )}
           <ul className="blog-topics" aria-label="Article topics">
             {article.topics.map((topic) => <li key={topic}>{topic}</li>)}
