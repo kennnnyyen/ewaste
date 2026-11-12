@@ -16,9 +16,11 @@ async function read(path) {
 const home = await read("/");
 const categoryPaths = [...new Set([...home.matchAll(/href="(\/recycling\/[a-z-]+)"/g)].map((m) => m[1]))];
 assert.equal(categoryPaths.length, 8, "Eight server-rendered guide links");
+const dataDestructionPath = "/data-destruction";
+assert.ok(home.includes(`href="${dataDestructionPath}"`), "Homepage links to data destruction");
 const descriptions = new Set();
 const titles = new Set();
-for (const path of ["/", ...categoryPaths]) {
+for (const path of ["/", dataDestructionPath, ...categoryPaths]) {
   const html = await read(path);
   const canonical = path === "/" ? origin : `${origin}${path}`;
   assert.ok(html.includes(`<link rel="canonical" href="${canonical}"`), `${path}: canonical`);
@@ -58,6 +60,13 @@ for (const path of ["/", ...categoryPaths]) {
     assert.equal(faq.mainEntity.length, [...html.matchAll(/<details(?:\s|>)/g)].length, "FAQ markup matches visible question count");
     assert.match(html, /<a[^>]+href="#contact"[^>]*>\s*Send us a photo/, "Photo CTA goes to contact");
     assert.doesNotMatch(html, /<h1[^>]*>\s*<span class="sr-only">/, "Main topic is visible");
+  } else if (path === dataDestructionPath) {
+    assert.match(html, /<a[^>]+href="\/#contact"[^>]*>\s*Request a data destruction quote/, "Data destruction enquiry goes to contact");
+    assert.ok(graph.some((node) => node["@type"] === "Service" && node.url === canonical), "Data destruction service points to its canonical URL");
+    for (const method of ["Verified software erasure", "Physical destruction", "Degaussing for magnetic media"]) {
+      assert.ok(html.includes(`<h3>${method}</h3>`), `Visible data destruction method: ${method}`);
+    }
+    assert.ok(graph.some((node) => node["@type"] === "BreadcrumbList"), "Data destruction breadcrumbs");
   } else {
     assert.match(html, /<a[^>]+href="\/#contact"[^>]*>Ask about/, `${path}: enquiry goes to contact`);
     assert.ok(graph.some((node) => node["@type"] === "BreadcrumbList"), `${path}: breadcrumbs`);
@@ -83,6 +92,8 @@ for (const path of ["/", ...categoryPaths]) {
         }[url.hostname];
         assert.equal(url.href, expectedUrl, `${path}: official external link`);
         assert.match(match[0], /target="_blank"/, `${path}: external link opens in a new tab`);
+      } else if (url.hostname === "csrc.nist.gov" && path === dataDestructionPath) {
+        assert.equal(url.href, "https://csrc.nist.gov/pubs/sp/800/88/r2/final", "Current NIST media sanitisation guidance");
       } else {
         assert.equal(url.origin, "https://www.google.com", `${path}: known map destination`);
         assert.equal(url.pathname, "/maps/search/", `${path}: maps search link`);
@@ -102,7 +113,7 @@ const blogPaths = [...new Set([...home.matchAll(/href="(\/blogs\/[a-z-]+)"/g)].m
 assert.ok(blogPaths.length >= 2, "Homepage links to the published articles");
 assert.deepEqual(
   new Set(locations),
-  new Set([origin, ...[...categoryPaths, "/blogs", ...blogPaths].map((path) => `${origin}${path}`)]),
+  new Set([origin, ...[dataDestructionPath, ...categoryPaths, "/blogs", ...blogPaths].map((path) => `${origin}${path}`)]),
   "Sitemap includes the blog and its articles",
 );
 for (const path of blogPaths) {
@@ -113,6 +124,6 @@ for (const path of blogPaths) {
 const llms = await read("/llms.txt");
 assert.ok(llms.includes(origin), "AI reference identifies the canonical site");
 assert.ok(llms.includes("2 Price St, Oakleigh South"), "AI reference uses the visible business address");
-for (const path of categoryPaths) assert.ok(llms.includes(`${origin}${path}`), `${path}: absolute guide reference`);
+for (const path of [dataDestructionPath, ...categoryPaths]) assert.ok(llms.includes(`${origin}${path}`), `${path}: absolute guide reference`);
 assert.equal((await fetch(new URL("/recycling/unknown-category", base))).status, 404, "Unknown category is a real 404");
 console.log(`Verified ${titles.size} pages: metadata, structured data, sitemap, all rendered navigation links and CTA anchors.`);

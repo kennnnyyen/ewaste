@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CertificationGrid from "./certification-grid";
 import BlogPreview from "./blog-preview";
 import Image from "next/image";
 import SiteHeader from "./site-header";
@@ -7,10 +8,11 @@ import ProductFinder from "./product-finder";
 import EnquiryComposer from "./enquiry-composer";
 import { categories, enquiryUrl, faqs } from "./recycling-content";
 import { organization, serviceArea, siteDescription, siteTitle, siteUrl } from "./site-config";
+import { dataDestructionPath } from "./data-destruction-content";
 import { contactDetails } from "./contact-details";
 
 const dataDestructionDescription =
-  "Arrange secure handling for hard drives, SSDs and other data-bearing equipment. Ask about physical destruction or verified software erasure for suitable drives, and confirm what records are available for your job.";
+  "Arrange hard drive and SSD destruction for retired IT, or ask about verified erasure if you plan to reuse suitable drives. Confirm handling and documentation before handover.";
 
 const steps = [
   [
@@ -76,7 +78,8 @@ export default function Home() {
         "@type": "Service",
         "@id": `${siteUrl}/#data-destruction-service`,
         name: "Secure data destruction",
-        url: `${siteUrl}/#data-destruction-service`,
+        url: `${siteUrl}${dataDestructionPath}`,
+        serviceType: "Secure data destruction and drive erasure",
         provider: { "@id": organization["@id"] },
         areaServed: serviceArea,
         description: dataDestructionDescription,
@@ -166,19 +169,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <dl className="certification-grid">
-              {[
-                ["ISO 9001", "Quality management"],
-                ["ISO 14001", "Environmental management"],
-                ["ISO 45001", "Occupational health and safety"],
-                ["AS/NZS 5377", "E-waste collection, storage, transport and treatment"],
-              ].map(([standard, scope]) => (
-                <div key={standard}>
-                  <dt>{standard}</dt>
-                  <dd>{scope}</dd>
-                </div>
-              ))}
-            </dl>
+            <CertificationGrid />
           </div>
         </section>
 
@@ -236,17 +227,17 @@ export default function Home() {
                   title: "Secure data destruction",
                   text: dataDestructionDescription,
                   link: "Explore data destruction",
-                  href: "#security",
+                  href: dataDestructionPath,
                   id: "data-destruction-service",
                 },
               ].map((service) => (
                 <article className="service-card" id={service.id} key={service.title}>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
-                  <a className="text-link" href={service.href}>
+                  <Link className="text-link" href={service.href}>
                     {service.link}
                     <span aria-hidden="true">↗</span>
-                  </a>
+                  </Link>
                 </article>
               ))}
             </div>

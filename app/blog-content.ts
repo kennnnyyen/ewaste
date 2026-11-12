@@ -1,3 +1,5 @@
+import { dataDestructionPath } from "./data-destruction-content";
+
 export const articles = [
   {
     slug: "office-it-recycling-checklist",
@@ -72,6 +74,9 @@ export const articles = [
         text: "Include the drive count, equipment types, postcode and any deadline. Mention whether preserving the drives for reuse matters and list any mandatory handling requirements. Recore can then confirm which options are suitable and what to agree before the equipment changes hands.",
       },
     ],
-    related: [{ href: "/recycling/hard-drives-and-storage", label: "Hard drive and storage recycling" }],
+    related: [
+      { href: dataDestructionPath, label: "Melbourne data destruction and drive erasure" },
+      { href: "/recycling/hard-drives-and-storage", label: "Hard drive and storage recycling" },
+    ],
   },
 ];

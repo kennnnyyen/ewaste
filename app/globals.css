@@ -1547,19 +1547,56 @@ p {
   gap: 16px;
 }
 
-.certification-grid > div {
-  border-top: 1px solid currentColor;
-  padding-top: 16px;
+.certification-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 38px 16px 16px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
-.certification-grid dt {
+.certification-tile:hover,
+.certification-tile:focus-visible {
+  border-color: var(--accent);
+}
+
+.certification-tile strong {
   font-size: 20px;
-  font-weight: 700;
 }
 
-.certification-grid dd {
-  margin: 6px 0 0;
+.certification-tile span {
   font-size: 14px;
+}
+
+.certification-tile-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: var(--accent);
+}
+
+.certification-modal {
+  width: min(540px, calc(100% - 32px));
+}
+
+.certification-modal h3 {
+  font-size: clamp(22px, 4vw, 30px);
+}
+
+.certification-modal-description {
+  margin: 16px 0 22px;
+}
+
+.certification-modal-example {
+  margin: 8px 0 24px;
 }
 
 .landing-page .hero {

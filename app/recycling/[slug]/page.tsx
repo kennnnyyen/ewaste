@@ -1,3 +1,4 @@
+import { dataDestructionPath } from "../../data-destruction-content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -140,7 +141,7 @@ export default async function CategoryPage({ params }: Props) {
               <span className="eyebrow">A CONSIDERED APPROACH</span>
               <h2>Good to know</h2>
               <p>{category.consideration}</p>
-              <Link className="text-link" href="/#security">
+              <Link className="text-link" href={dataDestructionPath}>
                 Explore data handling <span aria-hidden="true">↗</span>
               </Link>
             </aside>

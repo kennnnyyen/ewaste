@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { dataDestructionSteps, dataDestructionSummary } from "./data-destruction-content";
+import { dataDestructionPath, dataDestructionSteps, dataDestructionSummary } from "./data-destruction-content";
 import { categories } from "./recycling-content";
 import RecyclingIcon from "./recycling-icon";
 
@@ -221,9 +221,9 @@ export default function ProductFinder() {
                     </aside>
                   </div>
                   <p>
-                    <a className="text-link" href="https://ypecycle.com.au/data-erasure%2Foverwriting" target="_blank" rel="noopener noreferrer">
-                      Read YP ECYCLE’s guide to software erasure <span aria-hidden="true">↗</span>
-                    </a>
+                    <Link className="text-link" href={dataDestructionPath}>
+                      Explore data destruction methods and documentation <span aria-hidden="true">↗</span>
+                    </Link>
                   </p>
                 </>
               )}

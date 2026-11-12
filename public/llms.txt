@@ -30,7 +30,7 @@
 
 ## Services and enquiries
 - [Services](https://www.recore-cycle.com/#services)
-- [Data destruction service overview](https://www.recore-cycle.com/#data-destruction-service): discuss physical destruction or verified software erasure for suitable drives, and confirm available documentation.
+- [Secure data destruction in Melbourne](https://www.recore-cycle.com/data-destruction): Recore helps businesses arrange physical destruction for retired drives or verified erasure for suitable working drives intended for reuse. SSDs need a method suited to flash storage. Degaussing applies to suitable magnetic media. Confirm method availability, verification, chain-of-custody records and any certificate requirements before handover.
 - [Certifications](https://www.recore-cycle.com/#certifications): ISO 9001, ISO 14001, ISO 45001 and AS/NZS 5377 are listed by sister company YP ECYCLE.
 - [Frequently asked questions](https://www.recore-cycle.com/#faq)
 - [Contact Recore](https://www.recore-cycle.com/#contact): equipment descriptions, photos, approximate quantities and location help Recore assess a load.
