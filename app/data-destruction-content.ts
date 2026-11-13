@@ -24,7 +24,7 @@ export const dataDestructionMethods = [
     description: "Suitable working drives can be sanitised for reuse. Overwriting can be appropriate for compatible hard drives. SSDs may need a device-specific method because ordinary overwriting can miss areas managed by the drive. Ask how the result will be verified.",
   },
   {
-    title: "Physical destruction",
+    title: "Physical hard drive and SSD destruction",
     description: "Ask about physical destruction for failed or damaged drives, or when your policy requires the media to be taken out of use. The method needs to suit the storage type, including the flash chips in SSDs.",
   },
   {
