@@ -15,12 +15,12 @@ export type RecyclingCategory = {
 export const categories: RecyclingCategory[] = [
   {
     slug: "computers-and-laptops",
-    title: "Computer & laptop recycling",
+    title: "Computer & laptop recycling in Melbourne",
     shortTitle: "Computers & laptops",
     group: "Equipment",
     icon: "computer",
     summary:
-      "Give retired desktop PCs, laptops and all-in-one computers a considered next step, whether you have a few devices or a mixed business load.",
+      "Recycle old desktop PCs, laptops and all-in-one computers with Recore in Oakleigh South. Enquire about a few devices or a bulk office IT load in Melbourne.",
     examples: [
       "Desktop PCs and workstations",
       "Laptops and notebooks",
@@ -103,12 +103,12 @@ export const categories: RecyclingCategory[] = [
   },
   {
     slug: "circuit-boards",
-    title: "Circuit board & motherboard recycling",
+    title: "Circuit board & motherboard recycling in Melbourne",
     shortTitle: "Circuit boards",
     group: "Components",
     icon: "board",
     summary:
-      "Request an assessment for computer circuit boards and motherboards. Board type, grade and quantity help determine the available recovery value.",
+      "Looking to recycle computer scrap in Melbourne? Send Recore photos and an approximate count or weight of your circuit boards and motherboards for a quote.",
     examples: [
       "Desktop and laptop motherboards",
       "Server circuit boards",
@@ -230,7 +230,7 @@ export const faqs = [
   {
     question: "Can I drop off equipment or arrange a collection?",
     answer:
-      "Contact Recore with your location, equipment list and approximate load size first. We will confirm whether collection or an arranged handover is suitable, along with any charges and access requirements. Please wait for confirmation before travelling or sending equipment.",
+      "Contact Recore with your suburb, equipment list and approximate load size. We’ll confirm whether collection is available or you can arrange a drop-off in Oakleigh South, plus any charges and access requirements. Please wait for confirmation before travelling or sending equipment.",
   },
   {
     question: "What about batteries, toner or damaged screens?",
