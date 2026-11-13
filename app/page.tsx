@@ -276,18 +276,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="recovery-band">
+        <section className="recovery-band" id="business-collection">
           <div className="container recovery-band-inner">
-            <span className="eyebrow">THE RECORE APPROACH</span>
-            <h2>IT recycling for office moves, upgrades and clear-outs.</h2>
+            <h2>Business e-waste collection in Melbourne</h2>
             <p>
-              Recore helps businesses across {serviceArea} retire old equipment.
-              Send us your equipment list, approximate quantities and postcode.
-              We’ll confirm what we can accept, whether any components may have
-              recovery value, and which handover options are available.
+              Clearing out an office or upgrading your IT? Send us a list of
+              your old computers, monitors, printers or servers, along with
+              approximate quantities and your postcode. Recore serves {serviceArea}.
+              We’ll confirm whether collection is available for your load, what
+              we can accept and any charges or recovery value.
             </p>
             <a className="text-link" href="#contact">
-              Let’s find the next step <span aria-hidden="true">↗</span>
+              Enquire about e-waste collection <span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
