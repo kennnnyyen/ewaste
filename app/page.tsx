@@ -7,7 +7,7 @@ import SiteFooter from "./site-footer";
 import ProductFinder from "./product-finder";
 import EnquiryComposer from "./enquiry-composer";
 import { categories, enquiryUrl, faqs } from "./recycling-content";
-import { organization, serviceArea, siteDescription, siteTitle, siteUrl } from "./site-config";
+import { collectionEligibility, organization, serviceArea, siteDescription, siteTitle, siteUrl } from "./site-config";
 import { dataDestructionPath } from "./data-destruction-content";
 import { contactDetails } from "./contact-details";
 
@@ -62,6 +62,7 @@ export default function Home() {
         ...(siteUrl ? { "@id": `${siteUrl}/#recycling-service`, url: `${siteUrl}/#services` } : {}),
         provider: { "@id": organization["@id"] },
         areaServed: serviceArea,
+        description: `Recycle retired business IT and assess eligible components for recovery. ${collectionEligibility} Send your equipment list, approximate quantities and postcode to confirm.`,
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Recycling categories",
@@ -108,19 +109,20 @@ export default function Home() {
                 E-WASTE RECYCLING & RESOURCE RECOVERY
               </span>
               <h1>
-                E-waste recycling.
+                Business e-waste recycling
                 <br />
-                <span>New possibilities.</span>
+                <span>in Melbourne.</span>
               </h1>
               <p>
                 Clear out retired IT, recover value from eligible components
-                and protect the data left on your drives. Based in Oakleigh
-                South, Recore helps businesses across Melbourne and most of
-                Victoria recycle retired equipment and arrange secure data
-                destruction.
+                and arrange secure data destruction with Recore.
               </p>
+              <p className="hero-pickup-note">Free pickup for qualifying e-waste loads.</p>
               <div className="hero-actions">
-                <a className="button" href="#products">
+                <a className="button" href="#contact">
+                  Check pickup eligibility <span aria-hidden="true">↗</span>
+                </a>
+                <a className="text-link" href="#products">
                   Find what you can recycle <span aria-hidden="true">↗</span>
                 </a>
               </div>
@@ -132,13 +134,14 @@ export default function Home() {
             <figure className="hero-visual">
               <div className="hero-image">
                 <Image
-                  src="/recycling-equipment-hero.webp"
-                  alt="Illustrative arrangement of retired computers, a laptop, printer, networking equipment and electronic components."
+                  src="/recore-business-it-collection.webp"
+                  alt="Retired computer towers, monitors and a laptop in a rolling collection cage at a loading bay."
                   fill
                   priority
                   sizes="(max-width: 800px) 100vw, 50vw"
                 />
               </div>
+              <figcaption className="hero-art-caption">Illustrative collection scene</figcaption>
             </figure>
           </div>
         </section>
@@ -280,11 +283,11 @@ export default function Home() {
           <div className="container recovery-band-inner">
             <h2>Business e-waste collection in Melbourne</h2>
             <p>
-              Clearing out an office or upgrading your IT? Send us a list of
-              your old computers, monitors, printers or servers, along with
-              approximate quantities and your postcode. Recore serves {serviceArea}.
-              We’ll confirm whether collection is available for your load, what
-              we can accept and any charges or recovery value.
+              {collectionEligibility} Recore serves {serviceArea}.
+              If you’re clearing out an office or upgrading your IT, send us your
+              equipment list, approximate quantities and postcode. We’ll confirm
+              what we can accept, whether your load qualifies for free pickup,
+              and any applicable charges or recovery value before you book.
             </p>
             <a className="text-link" href="#contact">
               Enquire about e-waste collection <span aria-hidden="true">↗</span>

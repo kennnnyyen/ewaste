@@ -228,9 +228,9 @@ export const faqs = [
       "Discuss data destruction before handing over computers, servers, drives or other data-bearing devices. Tell us the media types and quantities, any asset tracking you need, and the records your business requires. The method and documentation must be agreed for the job.",
   },
   {
-    question: "Can I drop off equipment or arrange a collection?",
+    question: "Can I arrange free e-waste pickup or drop off equipment?",
     answer:
-      "Contact Recore with your suburb, equipment list and approximate load size. We’ll confirm whether collection is available or you can arrange a drop-off in Oakleigh South, plus any charges and access requirements. Please wait for confirmation before travelling or sending equipment.",
+      "Free pickup is available for eligible loads. Send your equipment list, approximate quantities and suburb or postcode so we can confirm whether your load qualifies or whether drop-off in Oakleigh South is an option. Free pickup refers to collection only. We’ll confirm any other charges and access requirements before you arrange a handover.",
   },
   {
     question: "What about batteries, toner or damaged screens?",

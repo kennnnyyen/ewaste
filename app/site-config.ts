@@ -5,7 +5,8 @@ export const siteUrl = "https://www.recore-cycle.com";
 export const siteTitle = "Recore | E-waste Recycling & Data Destruction Melbourne";
 export const serviceArea = "Melbourne and most of Victoria";
 export const siteDescription =
-  `Recycle retired IT, recover value from eligible components and arrange secure data destruction with Recore. Serving ${serviceArea}.`;
+  "Business e-waste recycling, IT collection and secure data destruction in Melbourne. Ask Recore about free pickup for eligible loads.";
+export const collectionEligibility = "Free pickup is available for eligible loads.";
 
 export const socialProfiles = {
   linkedin: "https://www.linkedin.com/company/recore-cycle",
