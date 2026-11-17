@@ -141,7 +141,6 @@ export default function Home() {
                   sizes="(max-width: 800px) 100vw, 50vw"
                 />
               </div>
-              <figcaption className="hero-art-caption">AI-generated collection scene</figcaption>
             </figure>
           </div>
         </section>
