@@ -14,7 +14,8 @@ type BlogArticle = {
   description: string;
   image: BlogImage;
   topics: string[];
-  example: string;
+  example?: string;
+  story?: { lead: string[]; closing: string[]; website: string };
   sections: { heading: string; text: string; illustration?: BlogImage }[];
   checklist: string[];
   references?: { label: string; href: string }[];
@@ -22,6 +23,46 @@ type BlogArticle = {
 };
 
 export const articles: BlogArticle[] = [
+  {
+    slug: "the-last-room-to-clear-on-moving-day",
+    category: "IT asset recovery",
+    title: "The last room to clear on moving day",
+    description: "Follow a fictional Melbourne office move and see how Recore handles retired IT collection, asset recovery, recycling and secure data destruction.",
+    image: {
+      src: "/recore-moving-day-it-collection.webp",
+      alt: "Retired computers and monitors on a collection trolley at the door of an office IT room.",
+      width: 1536,
+      height: 1024,
+    },
+    topics: ["Office IT recycling", "IT asset recovery", "Secure data destruction", "Melbourne office moves"],
+    story: {
+      lead: [
+        "At 4:30, there was one room left to clear.",
+        "The removalists had taken the desks. The network gear going to the new office was already boxed. In the old IT room, three shelves still held laptops, monitors, a few small servers and a box of loose drives.",
+        "In this imagined office move, facilities coordinator Alex and the IT lead do one last walk-through. They match the retired equipment to the asset list, set aside two laptops that are still on loan and flag the drives for data destruction. By the time the Recore crew arrives, Alex can point to what is ready to leave and say what each group needs.",
+      ],
+      closing: [
+        "Alex shuts the IT room door with the keys in one hand and the checked list in the other. The room is clear, and the retired equipment has a plan beyond the loading bay.",
+        "Moving office or replacing a fleet in Melbourne? Tell Recore what equipment you have, roughly how much there is and which devices need data destruction. Call 0406 406 016 or email info@recore-cycle.com.",
+      ],
+      website: "https://www.recore-cycle.com/",
+    },
+    sections: [
+      {
+        heading: "One pickup, different next steps",
+        text: "Recore collects retired IT equipment and assesses it for asset recovery or e-waste recycling. A laptop with reuse potential and a broken monitor can leave on the same collection, with their handling agreed for the job. Where equipment contains data, the customer can arrange secure data destruction with Recore and confirm which records are available for the agreed scope.\n\nBefore collection, agree what is being picked up, which assets or media need data destruction, and what documentation you will need afterwards. On pickup day, use the asset list to check what leaves and record any exceptions. When the job records arrive, you can reconcile them against the list.",
+      },
+    ],
+    checklist: [
+      "Equipment types, approximate quantities and collection suburb",
+      "Devices or media that need secure data destruction",
+      "Any asset tracking or documentation your team needs after pickup",
+    ],
+    related: [
+      { href: "/blogs/office-it-recycling-checklist", label: "Office IT recycling checklist" },
+      { href: dataDestructionPath, label: "Secure data destruction" },
+    ],
+  },
   {
     slug: "what-makes-old-computer-parts-worth-recycling",
     category: "Component recovery",

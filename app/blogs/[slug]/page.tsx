@@ -76,19 +76,32 @@ export default async function ArticlePage({ params }: Props) {
             <p>{article.description}</p>
           </header>
           <Image {...article.image} alt={article.image.alt} className="blog-article-image" sizes="(max-width: 820px) 100vw, 780px" />
-          <section className="blog-card">
-            <h2>What this looks like in practice</h2>
-            <p>{article.example}</p>
-          </section>
+          {article.story && (
+            <section aria-label="Moving-day story">
+              {article.story.lead.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </section>
+          )}
+          {article.example && (
+            <section className="blog-card">
+              <h2>What this looks like in practice</h2>
+              <p>{article.example}</p>
+            </section>
+          )}
           {article.sections.map(({ heading, text, illustration }) => (
             <section key={heading}>
               <h2>{heading}</h2>
-              <p>{text}</p>
+              {text.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               {illustration && (
                 <Image {...illustration} alt={illustration.alt} className="blog-article-image" sizes="(max-width: 820px) 100vw, 780px" />
               )}
             </section>
           ))}
+          {article.story && (
+            <section aria-label="Moving-day wrap-up">
+              {article.story.closing.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              <p><Link href="/">{article.story.website}</Link></p>
+            </section>
+          )}
           <section className="blog-card">
             <h2>What to include in your enquiry</h2>
             <ul className="category-list">
