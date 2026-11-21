@@ -1804,6 +1804,13 @@ p {
   object-fit: contain;
   margin-top: 26px;
 }
+.blog-article-cover {
+  margin: 0;
+}
+.blog-article-cover figcaption {
+  margin-top: 8px;
+  font-size: 14px;
+}
 .blog-topics {
   display: flex;
   flex-wrap: wrap;

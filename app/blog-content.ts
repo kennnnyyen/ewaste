@@ -13,6 +13,7 @@ type BlogArticle = {
   title: string;
   description: string;
   image: BlogImage;
+  imageCaption?: string;
   topics: string[];
   example?: string;
   story?: { lead: string[]; closing: string[]; website: string };
@@ -23,6 +24,89 @@ type BlogArticle = {
 };
 
 export const articles: BlogArticle[] = [
+  {
+    slug: "failed-ssd-warranty-return-data-plan",
+    category: "Data destruction",
+    title: "A failed SSD still deserves a data plan",
+    description: "Before returning a failed SSD under warranty, check whether you can keep it and agree how the data will be handled.",
+    image: {
+      src: "/images/blogs/failed-ssd-warranty-return.webp",
+      alt: "Illustration of an SSD beside an open laptop and a Recore-branded card on a workbench",
+      width: 1122,
+      height: 1402,
+    },
+    imageCaption: "AI-generated illustration of a warranty repair workbench.",
+    topics: ["Failed SSD warranty return", "Drive retention", "SSD sanitisation", "Secure data destruction"],
+    example: "A laptop won’t boot. The supplier has offered a replacement drive under warranty. Before sending the original drive back, the IT team checks what the support agreement says about retaining the failed drive and how to handle the data.",
+    sections: [
+      {
+        heading: "A fault is not proof the data was erased",
+        text: "A drive your team can’t read isn’t necessarily a drive whose data has been erased. Treat the SSD as data-bearing until your organisation has verified the sanitisation outcome or arranged appropriate destruction. Keep the drive secure while you decide what happens next.",
+      },
+      {
+        heading: "Check whether your support plan lets you keep the drive",
+        text: "Check your own contract and ask the supplier before approving the return. Dell Australia, for example, lists a Keep Your Hard Drive service on eligible support plans. If your plan allows retention, keep control of the failed drive and arrange a sanitisation or destruction method approved by your organisation.",
+      },
+      {
+        heading: "If the drive must go back, agree on data handling before dispatch",
+        text: "Ask the supplier how it handles returned data-bearing drives and what evidence it can provide. Confirm that the proposed process meets your organisation’s requirements before the drive leaves your control. If those requirements can’t be met, raise it with the person responsible for information security before dispatch.",
+      },
+    ],
+    checklist: [
+      "Type and approximate number of failed drives",
+      "Whether your warranty or support plan requires a return",
+      "Your organisation’s data-handling and evidence requirements",
+    ],
+    references: [
+      { label: "Dell Australia: ProSupport Suite and Keep Your Hard Drive", href: "https://www.dell.com/en-au/learn/services/lp/prosupport-suite-for-pcs" },
+      { label: "NIST SP 800-88 Rev. 2: Guidelines for Media Sanitization", href: "https://csrc.nist.gov/pubs/sp/800/88/r2/final" },
+    ],
+    related: [
+      { href: dataDestructionPath, label: "Secure data destruction in Melbourne" },
+      { href: "/blogs/hard-drive-destruction-vs-software-erasure", label: "Hard drive destruction vs verified software erasure" },
+    ],
+  },
+  {
+    slug: "check-proof-of-data-destruction",
+    category: "Data destruction",
+    title: "The asset tag was still on: checking proof of data destruction",
+    description: "A USAID watchdog case shows why device inventories, custody records and verified treatment should agree before you close a destruction job.",
+    image: {
+      src: "/data-destruction-machine-art.webp",
+      alt: "Generic illustration of a physical data destruction machine",
+      width: 1024,
+      height: 1024,
+    },
+    imageCaption: "Generic equipment illustration, not a photo of the incident.",
+    topics: ["Proof of data destruction", "Asset reconciliation", "Chain of custody", "IT asset disposal"],
+    example: "In September 2025, the USAID Office of Inspector General reported that investigators recovered phones still carrying USAID barcodes. Hundreds of phones and computers had been diverted from a contracted destruction process and resold, and false destruction certificates were issued. The report documents what happened to the equipment, not whether anyone accessed the data.",
+    sections: [
+      {
+        heading: "What left your site?",
+        text: "Build an inventory before the equipment is collected. Record the asset ID or serial number for each device or drive when your process requires item-level tracking. Note which devices and storage media need secure data destruction.",
+      },
+      {
+        heading: "Who took custody, and when?",
+        text: "Keep a record of who took custody and when. Confirm what handover records your provider can supply and how they will link to your inventory. That gives your team a way to trace a specific device if something doesn’t match.",
+      },
+      {
+        heading: "Does the evidence match the equipment?",
+        text: "Match your equipment list to the evidence of verified erasure or physical destruction, as appropriate. If an item is missing or its status is unclear, leave that item open until you know why. A certificate is more useful when you can trace it back to the equipment it covers.",
+      },
+    ],
+    checklist: [
+      "Equipment types, approximate quantities and collection suburb",
+      "Which devices or loose drives require data destruction",
+      "Any item-level tracking, custody or evidence requirements; no serial numbers needed for an initial enquiry",
+    ],
+    references: [
+      { label: "USAID Office of Inspector General: investigative summary, 9 September 2025", href: "https://oig.usaid.gov/node/7897" },
+    ],
+    related: [
+      { href: dataDestructionPath, label: "Secure data destruction in Melbourne" },
+      { href: "/blogs/office-it-recycling-checklist", label: "Office IT recycling checklist" },
+    ],
+  },
   {
     slug: "the-last-room-to-clear-on-moving-day",
     category: "IT asset recovery",

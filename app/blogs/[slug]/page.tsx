@@ -62,6 +62,9 @@ export default async function ArticlePage({ params }: Props) {
     },
     publisher: { "@id": organization["@id"] },
   };
+  const cover = (
+    <Image {...article.image} alt={article.image.alt} className="blog-article-image" sizes="(max-width: 820px) 100vw, 780px" />
+  );
   return (
     <>
       <SiteHeader />
@@ -75,7 +78,12 @@ export default async function ArticlePage({ params }: Props) {
             <h1>{article.title}</h1>
             <p>{article.description}</p>
           </header>
-          <Image {...article.image} alt={article.image.alt} className="blog-article-image" sizes="(max-width: 820px) 100vw, 780px" />
+          {article.imageCaption ? (
+            <figure className="blog-article-cover">
+              {cover}
+              <figcaption>{article.imageCaption}</figcaption>
+            </figure>
+          ) : cover}
           {article.story && (
             <section aria-label="Moving-day story">
               {article.story.lead.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
