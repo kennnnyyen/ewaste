@@ -25,6 +25,43 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    slug: "recycling-old-routers-and-switches",
+    category: "Data destruction",
+    title: "Before you recycle a router or switch, check what it remembers",
+    description: "Routers, switches and firewalls may retain settings or credentials. Check how to clear old network equipment before it leaves your control.",
+    image: {
+      src: "/images/blogs/retired-network-switch.webp",
+      alt: "An unplugged Ethernet cable lies next to a retired switch and a Recore intake card",
+      width: 1122,
+      height: 1402,
+    },
+    imageCaption: "AI-generated editorial illustration, not a photo of real equipment or a Recore facility.",
+    topics: ["Network equipment recycling", "Router and switch sanitisation", "Secure data destruction", "Melbourne e-waste collection"],
+    example: "A router, switch or firewall may still hold network settings or credentials after it leaves the rack. Decide who will clear it and how they will verify the result before it leaves your control.",
+    sections: [
+      {
+        heading: "Check the exact model",
+        text: "The Australian Signals Directorate advises following device-specific or vendor guidance first. Ask your IT team or provider to confirm the applicable procedure and record the outcome.",
+      },
+      {
+        heading: "Set exceptions aside",
+        text: "If a unit won’t power on or the result can’t be verified, keep it out of the general recycling load until your team agrees on appropriate handling.",
+      },
+      {
+        heading: "What to send Recore",
+        text: "For a Melbourne collection enquiry, share equipment types, approximate quantities, pickup suburb and handling requirements with Recore on 0406 406 016 or info@recore-cycle.com. Leave out passwords and configuration files.",
+      },
+    ],
+    checklist: ["Equipment types and approximate quantities", "Pickup suburb", "Handling requirements"],
+    references: [
+      { label: "Australian Signals Directorate: sanitising network devices", href: "https://www.cyber.gov.au/ism/guidelines-for-information-technology-equipment#sanitising-network-devices" },
+    ],
+    related: [
+      { href: "/recycling/servers-and-networking", label: "Recore: servers and networking" },
+      { href: dataDestructionPath, label: "Secure data destruction in Melbourne" },
+    ],
+  },
+  {
     slug: "failed-ssd-warranty-return-data-plan",
     category: "Data destruction",
     title: "A failed SSD still deserves a data plan",
