@@ -371,7 +371,7 @@ export default function Home() {
                 </a>
               </div>
               <div className="contact-direct">
-                <span>CALL US</span>
+                <span>CALL HARRY</span>
                 <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
               </div>
               <div className="contact-direct">
