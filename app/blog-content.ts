@@ -25,6 +25,61 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "why-e-waste-recycling-matters",
+    "category": "E-waste recycling",
+    "title": "Why e-waste recycling belongs in your next IT upgrade",
+    "description": "When new laptops arrive, what happens to the old ones? If there’s no plan, usable computers can sit in a storeroom for years, while batteries, cables and devices that still hold business data end up in the same pile.",
+    "image": {
+      "src": "/why-e-waste-recycling-matters.png",
+      "alt": "Illustration of retired laptops, a desktop and a monitor beside a Recore-tagged collection crate",
+      "width": 1536,
+      "height": 1024
+    },
+    "imageCaption": "AI-generated illustration of an office IT clear-out.",
+    "topics": [
+      "E-waste recycling",
+      "Electronics recycling",
+      "IT asset recovery",
+      "Secure data destruction",
+      "Melbourne businesses"
+    ],
+    "sections": [
+      {
+        "heading": "Why recycling electronics matters",
+        "text": "In 2022, the world generated 62 million tonnes of e-waste, but only 22.3% was recorded as collected and recycled through formal channels. Retired computers and other electronics contain materials such as copper and iron that can be recovered. Keeping working equipment in use where practical, and recycling what can’t be reused, gives those devices and materials another useful life.\n\nThere’s a safety reason to keep electronics separate, too. Victorian landfills cannot accept e-waste, and EPA Victoria warns that lithium-ion batteries can start fires if they’re disposed of incorrectly. Keep electronics and batteries out of ordinary rubbish and recycling bins. Flag damaged batteries before arranging a pickup so the recycler can advise how to handle them."
+      },
+      {
+        "heading": "Give the old equipment a plan before the new equipment arrives",
+        "text": "1. Identify what can stay in use. Set aside equipment your team can redeploy or have assessed for reuse.\n\n2. Plan for the data. Identify devices that still hold business records and agree how drives will be erased or destroyed before handing them over.\n\n3. Confirm what can be collected. List the equipment, approximate quantities and collection suburb. Ask which items are accepted and whether any need separate handling.\n\nPlanning a Melbourne office upgrade? Send Harry your equipment list at info@recore-cycle.com or call 0406 406 016. Recore can advise on recycling, collection and secure data destruction for eligible equipment."
+      }
+    ],
+    "checklist": [
+      "Equipment types and approximate quantities",
+      "Collection suburb and any items that need separate handling",
+      "Data-bearing devices and any erasure or destruction requirements"
+    ],
+    "references": [
+      {
+        "label": "Global E-waste Monitor 2024",
+        "href": "https://unitar.org/about/news-stories/press/global-e-waste-monitor-2024-electronic-waste-rising-five-times-faster-documented-e-waste-recycling"
+      },
+      {
+        "label": "EPA Victoria guidance on electronic waste",
+        "href": "https://www.epa.vic.gov.au/electronic-waste"
+      }
+    ],
+    "related": [
+      {
+        "label": "Computer and laptop recycling",
+        "href": "/recycling/computers-and-laptops"
+      },
+      {
+        "label": "Secure data destruction",
+        "href": "/data-destruction"
+      }
+    ]
+  },
+  {
     slug: "recycling-old-routers-and-switches",
     category: "Data destruction",
     title: "Before you recycle a router or switch, check what it remembers",
