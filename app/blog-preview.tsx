@@ -4,9 +4,10 @@ import { articles } from "./blog-content";
 
 export default function BlogPreview({ nested = false }: { nested?: boolean }) {
   const Heading = nested ? "h3" : "h2";
+  const visibleArticles = nested ? articles.slice(0, 3) : articles;
   return (
     <div className="blog-grid">
-      {articles.map((article) => (
+      {visibleArticles.map((article) => (
         <article className="blog-card" key={article.slug}>
           <Link href={`/blogs/${article.slug}`} className="blog-preview-link">
             <Image
