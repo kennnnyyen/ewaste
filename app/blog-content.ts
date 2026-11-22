@@ -35,7 +35,7 @@ export const articles: BlogArticle[] = [
       "width": 1536,
       "height": 1024
     },
-    "imageCaption": "AI-generated illustration of an office IT clear-out.",
+    "imageCaption": "Illustration of retired office IT awaiting collection.",
     "topics": [
       "E-waste recycling",
       "Electronics recycling",
