@@ -25,6 +25,63 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "office-printer-recycling-melbourne",
+    "category": "E-waste recycling",
+    "title": "Before the old office printer leaves: three decisions to make",
+    "description": "The new printer is installed. The old one is still in the print room, with a box of spare toner beside it. Before anyone books a pickup, settle these three things.",
+    "image": {
+      "src": "/images/blogs/office-printer-recycling.webp",
+      "alt": "Freestanding office printer beside a separate carton of toner cartridges.",
+      "width": 1122,
+      "height": 1402
+    },
+    "topics": [
+      "Office printer recycling",
+      "Multifunction printer recycling",
+      "Office equipment recycling",
+      "Melbourne e-waste collection"
+    ],
+    "sections": [
+      {
+        "heading": "1. Who owns it?",
+        "text": "Ask procurement whether the printer is owned or leased. If it’s leased, check the agreement and agree the return process with the supplier before booking recycling. If it’s owned and still working, check whether another team can use it or the supplier offers take-back.\n\nSome multifunction models retain address books, settings or image data. Ask IT to check the exact model and confirm how to clear it before it leaves."
+      },
+      {
+        "heading": "2. Where does the toner go?",
+        "text": "List loose cartridges and toner bottles separately rather than assuming they go with the machine. Cartridges 4 Planet Ark offers a separate recycling route for eligible used cartridges. The printer itself is electronic equipment; Victorian landfills cannot accept e-waste."
+      },
+      {
+        "heading": "3. Can it get out of the building?",
+        "text": "Send the make and model, approximate size, quantities, photos and pickup suburb. Mention stairs, lift or loading dock access, and any lifting requirements before the collection is booked. A desktop unit and a freestanding copier can need different arrangements.\n\nPlanning a printer clear-out in Melbourne? Talk to Harry on 0406 406 016 or email info@recore-cycle.com. Recore assesses laser, inkjet and multifunction printers. Acceptance, any fees and pickup options depend on the load. Flag loose toner and ink separately."
+      }
+    ],
+    "checklist": [
+      "Make, model, approximate size and quantity",
+      "Photos, pickup suburb and access or lifting requirements",
+      "Loose cartridges, toner bottles and any data-handling requirements"
+    ],
+    "references": [
+      {
+        "label": "Cartridges 4 Planet Ark",
+        "href": "https://planetark.com/programs/cartridges-4-planet-ark"
+      },
+      {
+        "label": "EPA Victoria: electronic waste",
+        "href": "https://www.epa.vic.gov.au/electronic-waste"
+      },
+      {
+        "label": "Ricoh: information stored on equipment at end of life",
+        "href": "https://www.ricoh.com/support/information"
+      }
+    ],
+    "related": [
+      {
+        "label": "Recore: printer and office equipment recycling",
+        "href": "/recycling/printers-and-office-equipment"
+      }
+    ]
+  },
+  {
     "slug": "why-e-waste-recycling-matters",
     "category": "E-waste recycling",
     "title": "Why e-waste recycling belongs in your next IT upgrade",
