@@ -33,7 +33,6 @@ export default function SiteFooter() {
             aria-label="Recore on LinkedIn (opens in a new tab)"
           >
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="1" fill="#fff" />
               <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 19H4.96V9.45h2.97V19ZM6.45 8.15a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44ZM19.04 19h-2.96v-4.64c0-1.11-.02-2.53-1.54-2.53-1.54 0-1.78 1.2-1.78 2.45V19H9.8V9.45h2.84v1.3h.04a3.12 3.12 0 0 1 2.8-1.54c3 0 3.56 1.98 3.56 4.55V19Z" />
             </svg>
           </a>
@@ -44,7 +43,7 @@ export default function SiteFooter() {
             rel="noopener noreferrer"
             aria-label="Recore on Facebook (opens in a new tab)"
           >
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
               <path d="M14 21v-8h2.7l.4-3.1H14V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H8V13h2.6v8H14Z" />
             </svg>
           </a>

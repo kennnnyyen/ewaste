@@ -178,6 +178,9 @@ p {
   padding: 12px 20px;
   margin-left: 15px;
 }
+.nav-cta-mobile {
+  display: none;
+}
 .menu-button {
   display: none;
   border: 0;
@@ -631,8 +634,15 @@ p {
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(540px, 1.18fr);
-  gap: 7%;
+  column-gap: 7%;
+  row-gap: 28px;
+  align-items: start;
+  grid-template-areas: "intro form" "details form";
+  grid-template-rows: auto 1fr;
 }
+.contact-intro { grid-area: intro; }
+.contact-grid > .enquiry-form { grid-area: form; }
+.contact-details { grid-area: details; }
 .contact-grid h2 {
   font-size: clamp(39px, 4.2vw, 59px);
   color: #f6f1e8;
@@ -648,7 +658,6 @@ p {
 }
 .contact-signals {
   max-width: 460px;
-  margin-top: 38px;
   border-top: 1px solid #ffffff24;
 }
 .contact-signals > div {
@@ -716,21 +725,15 @@ p {
   color: #d58b68;
   margin-left: 10px;
 }
-.contact-intro > .contact-note {
+.contact-details > .contact-note {
   font-size: 14px;
   max-width: 350px;
   margin-top: 28px;
   color: #b9c9c1;
 }
 @media (width > 1100px) {
-  .contact-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .contact-signals {
     width: 100%;
-    margin-top: 24px;
   }
   .contact-signals > div {
     padding-block: 12px;
@@ -739,11 +742,7 @@ p {
     width: 100%;
     margin-top: 18px;
   }
-  .contact-map {
-    flex: 1 0 180px;
-    height: auto;
-  }
-  .contact-intro > .contact-note {
+  .contact-details > .contact-note {
     max-width: 460px;
     margin-top: 16px;
   }
@@ -1025,27 +1024,26 @@ p {
 .footer-socials {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 .footer-social {
-  display: inline-flex;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  border: 1px solid #708286;
+  border-radius: 8px;
+  color: #f6f1e8;
+  transition: background-color 0.2s, border-color 0.2s;
 }
-.footer-social svg {
-  transition: transform 0.2s ease, filter 0.2s ease;
+.footer-social:hover,
+.footer-social:focus-visible {
+  background: #29434d;
+  border-color: #aabbb9;
 }
-.footer-social svg:hover,
-.footer-social:focus-visible svg {
-  transform: translateY(-2px) scale(1.1);
-  filter: brightness(1.2);
-}
-.footer-social-linkedin {
-  color: #0a66c2;
-}
-.footer-social-facebook {
-  color: #1877f2;
-}
-.footer-social-instagram {
-  color: #e4405f;
+.footer-social:focus-visible {
+  outline-color: #f6b999;
+  outline-offset: 3px;
 }
 .footer-links {
   width: min(100%, 360px);
@@ -1207,27 +1205,50 @@ p {
 @media (max-width: 960px) {
   .nav {
     min-height: 76px;
-    gap: 18px;
-    flex-wrap: wrap;
+    gap: 14px;
   }
-  .nav-cta {
+  .nav-cta-desktop {
+    display: none;
+  }
+  .nav-cta-mobile {
+    display: inline-flex;
+    gap: 8px;
+    min-block-size: 44px;
+    padding-inline: 10px !important;
     margin-left: 0 !important;
-    order: 2;
+    white-space: nowrap;
+  }
+  .nav-cta-mobile span {
+    font-size: 16px;
   }
   .menu-button {
-    display: block;
-    order: 3;
-    font-size: 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    min-inline-size: 48px;
+    min-block-size: 44px;
+    padding-inline: 2px;
+    font-size: 13px;
   }
   .nav .brand {
     margin-right: auto;
   }
+  .nav .brand-wordmark {
+    width: clamp(90px, 29vw, 138px);
+  }
   .nav-links {
     display: none;
-    order: 4;
-    width: 100%;
+    position: absolute;
+    inset: 100% 0 auto;
     margin-left: 0;
-    padding: 10px 0 25px;
+    padding: 4px max(20px, calc((100% - 1280px) / 2)) 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 20px #18262c1a;
+    max-block-size: calc(100vh - 76px);
+    max-block-size: calc(100dvh - 76px);
+    overflow-y: auto;
   }
   .nav-links.open {
     display: flex;
@@ -1235,7 +1256,10 @@ p {
     gap: 0;
   }
   .nav-links a {
-    padding: 13px 0;
+    display: flex;
+    align-items: center;
+    min-block-size: 44px;
+    padding-inline: 5px;
     border-top: 1px solid var(--line);
   }
 }
@@ -1289,6 +1313,11 @@ p {
   .category-layout {
     grid-template-columns: 1fr;
     gap: 45px;
+  }
+  .contact-grid {
+    grid-template-areas: "intro" "form" "details";
+    grid-template-rows: auto;
+    gap: 26px;
   }
   .service-grid {
     gap: 22px;

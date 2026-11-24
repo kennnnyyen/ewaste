@@ -101,7 +101,7 @@ export default function Home() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main-content" className="landing-page">
+      <main id="main-content" tabIndex={-1} className="landing-page">
         <section className="hero" id="top">
           <div className="container hero-grid">
             <div className="hero-copy">
@@ -175,7 +175,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="products">
+        <section className="section" id="products" tabIndex={-1}>
           <div className="container">
             <div className="section-heading">
               <div>
@@ -199,7 +199,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section services-section" id="services">
+        <section className="section services-section" id="services" tabIndex={-1}>
           <div className="container">
             <div className="section-heading">
               <div>
@@ -246,7 +246,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="process">
+        <section className="section" id="process" tabIndex={-1}>
           <div className="container">
             <div className="section-heading">
               <div>
@@ -294,7 +294,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="faq">
+        <section className="section" id="faq" tabIndex={-1}>
           <div className="container faq-layout">
             <div>
               <span className="eyebrow">04 / FAQS</span>
@@ -343,6 +343,13 @@ export default function Home() {
                 Tell us what you have and where it is. We’ll help clarify
                 suitability, the service you need and the next practical step.
               </p>
+              <div className="contact-direct">
+                <span>CALL HARRY</span>
+                <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
+              </div>
+            </div>
+            <EnquiryComposer />
+            <div className="contact-details">
               <div className="contact-signals" aria-label="Helpful enquiry details">
                 <div>
                   <span>01</span>
@@ -369,10 +376,6 @@ export default function Home() {
                 >
                   Chat on WhatsApp <span aria-hidden="true">↗</span>
                 </a>
-              </div>
-              <div className="contact-direct">
-                <span>CALL HARRY</span>
-                <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
               </div>
               <div className="contact-direct">
                 <span>EMAIL</span>
@@ -402,7 +405,6 @@ export default function Home() {
                 load.
               </p>
             </div>
-            <EnquiryComposer />
           </div>
         </section>
       </main>
