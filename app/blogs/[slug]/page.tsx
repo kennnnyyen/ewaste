@@ -7,6 +7,19 @@ import SiteHeader from "../../site-header";
 import SiteFooter from "../../site-footer";
 import { organization, siteUrl } from "../../site-config";
 
+function articleInline(text: string) {
+  const token = /\*\*([^*]+)\*\*|\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g;
+  return Array.from(text.matchAll(token)).flatMap((match, i, matches) => {
+    const previousEnd = i === 0 ? 0 : matches[i - 1].index + matches[i - 1][0].length;
+    const prefix = text.slice(previousEnd, match.index);
+    return [
+      prefix,
+      match[1] ? <strong key={match.index}>{match[1]}</strong> : <a key={match.index} href={match[3]}>{match[2]}</a>,
+      ...(i === matches.length - 1 ? [text.slice(match.index + match[0].length)] : []),
+    ];
+  }).concat(text.match(token) ? [] : [text]);
+}
+
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
@@ -19,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!article) return {};
   const url = `${siteUrl}/blogs/${slug}`;
   return {
-    title: article.title,
+    title: article.seoTitle ?? article.title,
     description: article.description,
     alternates: { canonical: url },
     openGraph: {
@@ -84,6 +97,19 @@ export default async function ArticlePage({ params }: Props) {
               <figcaption>{article.imageCaption}</figcaption>
             </figure>
           ) : cover}
+          {article.fieldGuide ? (
+            <>
+              {article.fieldGuide.lead.map((paragraph) => <p key={paragraph}>{articleInline(paragraph)}</p>)}
+              <section>
+                <h2>{article.fieldGuide.heading}</h2>
+                <ul className="category-list">
+                  {article.fieldGuide.bullets.map((item) => <li key={item}>{articleInline(item)}</li>)}
+                </ul>
+              </section>
+              <p>{articleInline(article.fieldGuide.closing)}</p>
+            </>
+          ) : (
+            <>
           {article.story && (
             <section aria-label="Moving-day story">
               {article.story.lead.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -136,6 +162,8 @@ export default async function ArticlePage({ params }: Props) {
             ))}
             <Link className="button" href="/#contact">Request an assessment ↗</Link>
           </aside>
+            </>
+          )}
         </article>
         <script type="application/ld+json" dangerouslySetInnerHTML={{
           __html: JSON.stringify(schema).replace(/</g, "\\u003c"),

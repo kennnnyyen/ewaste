@@ -11,11 +11,13 @@ type BlogArticle = {
   slug: string;
   category: string;
   title: string;
+  seoTitle?: string;
   description: string;
   image: BlogImage;
   imageCaption?: string;
   topics: string[];
   example?: string;
+  fieldGuide?: { lead: string[]; heading: string; bullets: string[]; closing: string };
   story?: { lead: string[]; closing: string[]; website: string };
   sections: { heading: string; text: string; illustration?: BlogImage }[];
   checklist: string[];
@@ -24,6 +26,41 @@ type BlogArticle = {
 };
 
 export const articles: BlogArticle[] = [
+  {
+    "slug": "swollen-laptop-battery-office-clear-out",
+    "category": "E-waste recycling",
+    "title": "What to do with a swollen laptop battery before an office clear-out",
+    "seoTitle": "Swollen laptop battery? An office clear-out guide",
+    "description": "Found a swollen laptop battery during an office clear-out? Learn what to keep out of the recycling load and what to confirm before collection.",
+    "image": {
+      "src": "/images/blogs/swollen-laptop-battery-office-clear-out.webp",
+      "alt": "Retired laptop set apart from other IT equipment and identified with a red hold tag.",
+      "width": 1536,
+      "height": 1024
+    },
+    "topics": [
+      "Laptop battery safety",
+      "IT asset disposal",
+      "Office e-waste recycling",
+      "Melbourne business recycling"
+    ],
+    "fieldGuide": {
+      "lead": [
+        "You’re clearing the IT cupboard and spot a laptop with a lifted trackpad or a case that’s starting to split. Both can be signs of a swollen battery. Flag the laptop to your IT or facilities team before it gets packed with the rest. Don’t use it, charge it or try to pry the battery out.",
+        "The risk continues after your equipment leaves the office. Glen Eira City Council reported two waste-truck fires in June 2026. The council said the evidence pointed to lithium-ion batteries placed in kerbside recycling bins. Nobody was injured, but the fires took the loads out of the recycling stream. [Glen Eira City Council’s incident report](https://www.gleneira.vic.gov.au/about-council/news/latest-news/firey-reminder-to-keep-batteries-out-of-bins)"
+      ],
+      "heading": "Flag damaged equipment before you pack the rest",
+      "bullets": [
+        "**Check what you can see without opening devices.** Note laptops or tablets with bulging cases, and any leaking or damaged power banks or loose batteries. Don’t plug in suspect devices to see if they still work. [ACCC lithium-ion battery safety guide](https://www.productsafety.gov.au/consumers/handle-chemicals-and-poisons-safely/lithium-ion-batteries-guide)",
+        "**Keep suspected damaged items out of the standard load.** Tell your safety lead what you found. Before moving or transporting anything, confirm with an appropriate specialist how that item should be managed and who can accept it. Don’t put batteries or electronics into general waste or ordinary recycling bins. If a device starts smoking or catches fire, evacuate and call Triple Zero (000) from a safe place. [EPA Victoria’s e-waste guidance](https://www.epa.vic.gov.au/electronic-waste) · [Fire Rescue Victoria](https://www.frv.vic.gov.au/what-do-after-fire)",
+        "**Record the data requirement separately.** When a suspect laptop also contains business data, flag both issues in your asset list. Have your team agree how storage will be handled before release; don’t power up the damaged laptop to wipe it."
+      ],
+      "closing": "Planning a Melbourne office or IT clear-out? [Contact Recore](https://www.recore-cycle.com/#contact) with your equipment types, approximate quantities, postcode and any data-handling needs. Flag suspected battery damage up front so the appropriate arrangements can be confirmed before anything moves. For eligible equipment, you can also ask about [computer and laptop recycling](https://www.recore-cycle.com/recycling/computers-and-laptops) and [secure data destruction](https://www.recore-cycle.com/data-destruction)."
+    },
+    "sections": [],
+    "checklist": [],
+    "related": []
+  },
   {
     "slug": "office-printer-recycling-melbourne",
     "category": "E-waste recycling",
