@@ -54,6 +54,10 @@ for (const path of ["/", dataDestructionPath, ...categoryPaths]) {
     for (const address of ["info@recore-cycle.com", "sales.recore@gmail.com"]) {
       assert.ok(html.includes(`href="mailto:${address}"`), `${path}: visible email ${address}`);
     }
+    assert.match(html, /CALL OR SMS HARRY[\s\S]*?0406 406 016/, "Phone and SMS use the visible existing number");
+    for (const scheme of ["tel:", "sms:"]) {
+      assert.ok(html.includes(`href="${scheme}+61406406016"`), `Visible contact action: ${scheme}`);
+    }
     assert.ok(html.includes(businessAddress), `${path}: business address is visible`);
     assert.ok(html.includes("Recore | E-waste Recycling &amp; Data Destruction Melbourne"), "Local service title");
     assert.ok(html.includes("Where is Recore based?"), "Visible location FAQ");
@@ -81,6 +85,8 @@ for (const path of ["/", dataDestructionPath, ...categoryPaths]) {
     if (url.origin !== new URL(base).origin) {
       if (url.protocol === "tel:") {
         assert.equal(href, "tel:+61406406016", `${path}: confirmed phone link`);
+      } else if (url.protocol === "sms:") {
+        assert.equal(href, "sms:+61406406016", `${path}: confirmed SMS link`);
       } else if (url.protocol === "mailto:") {
         assert.ok(["mailto:info@recore-cycle.com", "mailto:sales.recore@gmail.com"].includes(href), `${path}: confirmed email link`);
       } else if (url.hostname === "wa.me") {
@@ -151,6 +157,7 @@ for (const path of ["/blogs", ...blogPaths]) {
 const llms = await read("/llms.txt");
 assert.ok(llms.includes(origin), "AI reference identifies the canonical site");
 assert.ok(llms.includes(businessAddress), "AI reference uses the visible business address");
+assert.ok(llms.includes("Call or SMS Harry: 0406 406 016"), "AI reference reflects the visible call and SMS options");
 assert.ok(llms.includes(`[Recore Blogs](${origin}/blogs)`), "AI reference points to the full article library");
 for (const match of llms.matchAll(/\[[^\]]+\]\((https?:\/\/[^)]+)\)/g)) {
   const url = new URL(match[1]);

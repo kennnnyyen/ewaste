@@ -343,9 +343,15 @@ export default function Home() {
                 Tell us what you have and where it is. We’ll help clarify
                 suitability, the service you need and the next practical step.
               </p>
-              <div className="contact-direct">
-                <span>CALL HARRY</span>
-                <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
+              <div className="contact-phone">
+                <div className="contact-phone-number">
+                  <span>CALL OR SMS HARRY</span>
+                  <span>{contactDetails.phone}</span>
+                </div>
+                <div className="contact-phone-actions" role="group" aria-label="Contact Harry by phone">
+                  <a href={contactDetails.phoneHref} aria-label={`Call Harry on ${contactDetails.phone}`}>Call Harry</a>
+                  <a href={contactDetails.smsHref} aria-label={`SMS Harry on ${contactDetails.phone}`}>SMS Harry</a>
+                </div>
               </div>
             </div>
             <EnquiryComposer />

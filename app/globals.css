@@ -693,6 +693,51 @@ p {
   border-radius: 12px;
 }
 
+.contact-phone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  max-width: 460px;
+  margin-top: 24px;
+}
+.contact-phone-number {
+  display: grid;
+  gap: 4px;
+  color: #f6f1e8;
+  font-size: 17px;
+}
+.contact-phone-number span:first-child {
+  color: #b9c9c1;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.contact-phone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.contact-phone-actions a {
+  display: inline-grid;
+  place-items: center;
+  min-block-size: 44px;
+  padding: 6px 11px;
+  border: 1px solid #708981;
+  border-radius: 6px;
+  color: #f6f1e8;
+  font-size: 14px;
+  font-weight: 600;
+}
+.contact-phone-actions a:hover,
+.contact-phone-actions a:focus-visible {
+  background: #294b42;
+  border-color: #b9c9c1;
+}
+.contact-phone-actions a:focus-visible {
+  outline-color: #f6b999;
+  outline-offset: 2px;
+}
 .contact-direct {
   display: flex;
   align-items: baseline;

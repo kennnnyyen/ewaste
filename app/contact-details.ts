@@ -4,10 +4,12 @@ const region = "VIC";
 const postalCode = "3167";
 const address = `${streetAddress}, ${locality} ${region} ${postalCode}, Australia`;
 const mapsQuery = encodeURIComponent(address);
+const internationalPhone = "+61406406016";
 
 export const contactDetails = {
   phone: "0406 406 016",
-  phoneHref: "tel:+61406406016",
+  phoneHref: `tel:${internationalPhone}`,
+  smsHref: `sms:${internationalPhone}`,
   whatsappNumber: "61406406016",
   email: "info@recore-cycle.com",
   alternateEmail: "sales.recore@gmail.com",
