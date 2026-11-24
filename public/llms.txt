@@ -37,6 +37,9 @@
 - [Contact Recore](https://www.recore-cycle.com/#contact): equipment descriptions, photos, approximate quantities and location help Recore assess a load.
 
 ## Blogs
+- [Recore Blogs](https://www.recore-cycle.com/blogs): Full library of Recore’s business e-waste recycling and data destruction guides.
+- [Office printer recycling in Melbourne](https://www.recore-cycle.com/blogs/office-printer-recycling-melbourne)
+- [Swollen laptop batteries during an office clear-out](https://www.recore-cycle.com/blogs/swollen-laptop-battery-office-clear-out)
 - [Office IT recycling checklist](https://www.recore-cycle.com/blogs/office-it-recycling-checklist)
 - [Hard drive destruction vs verified software erasure](https://www.recore-cycle.com/blogs/hard-drive-destruction-vs-software-erasure)
 

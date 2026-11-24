@@ -66,7 +66,7 @@ for (const path of ["/", dataDestructionPath, ...categoryPaths]) {
   } else if (path === dataDestructionPath) {
     assert.match(html, /<a[^>]+href="\/#contact"[^>]*>\s*Request a data destruction quote/, "Data destruction enquiry goes to contact");
     assert.ok(graph.some((node) => node["@type"] === "Service" && node.url === canonical), "Data destruction service points to its canonical URL");
-    for (const method of ["Verified software erasure", "Physical destruction", "Degaussing for magnetic media"]) {
+    for (const method of ["Verified software erasure", "Physical hard drive and SSD destruction", "Degaussing for magnetic media"]) {
       assert.ok(html.includes(`<h3>${method}</h3>`), `Visible data destruction method: ${method}`);
     }
     assert.ok(graph.some((node) => node["@type"] === "BreadcrumbList"), "Data destruction breadcrumbs");
@@ -112,21 +112,52 @@ const robots = await read("/robots.txt");
 assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`), "Robots advertises public sitemap");
 const sitemap = await read("/sitemap.xml");
 const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
-const blogPaths = [...new Set([...home.matchAll(/href="(\/blogs\/[a-z-]+)"/g)].map((match) => match[1]))];
-assert.ok(blogPaths.length >= 2, "Homepage links to the published articles");
+const articleLinks = (html) => [...new Set([...html.matchAll(/href="(\/blogs\/[a-z-]+)"/g)].map((match) => match[1]))];
+const homepageBlogPaths = articleLinks(home);
+assert.equal(homepageBlogPaths.length, 3, "Homepage shows only the three latest articles");
+const blogIndex = await read("/blogs");
+const blogPaths = articleLinks(blogIndex);
+assert.ok(blogPaths.length >= homepageBlogPaths.length, "Blog index links to the full article library");
+assert.deepEqual(homepageBlogPaths, blogPaths.slice(0, 3), "Homepage shows the first three articles from the blog index");
 assert.deepEqual(
   new Set(locations),
   new Set([origin, ...[dataDestructionPath, ...categoryPaths, "/blogs", ...blogPaths].map((path) => `${origin}${path}`)]),
-  "Sitemap includes the blog and its articles",
+  "Sitemap includes all articles from the full blog index",
 );
-for (const path of blogPaths) {
-  const article = await read(path);
-  assert.ok(article.includes(`rel="canonical" href="${origin}${path}"`), `${path}: canonical`);
-  assert.ok(article.includes('"@type":"BlogPosting"'), `${path}: article structured data`);
+for (const path of ["/blogs", ...blogPaths]) {
+  const html = await read(path);
+  const canonical = `${origin}${path}`;
+  assert.ok(html.includes(`rel="canonical" href="${canonical}"`), `${path}: canonical`);
+  assert.ok(html.includes(`property="og:url" content="${canonical}"`), `${path}: social URL`);
+  assert.doesNotMatch(html, /<meta name="robots" content="[^"]*noindex/, `${path}: indexable`);
+  assert.equal([...html.matchAll(/<h1(?:\s|>)/g)].length, 1, `${path}: one H1`);
+  for (const [pattern, values, label] of [
+    [/<title>(.*?)<\/title>/s, titles, "title"],
+    [/<meta name="description" content="([^"]+)"/, descriptions, "description"],
+  ]) {
+    const value = html.match(pattern)?.[1];
+    assert.ok(value && !values.has(value), `${path}: unique ${label}`);
+    values.add(value);
+  }
+  if (path !== "/blogs") {
+    const article = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)]
+      .map((match) => JSON.parse(match[1]))
+      .find((schema) => schema["@type"] === "BlogPosting");
+    assert.ok(article, `${path}: article structured data`);
+    assert.equal(article.mainEntityOfPage, canonical, `${path}: structured data points to canonical article`);
+    assert.ok(article.image.startsWith(`${origin}/`), `${path}: canonical image URL`);
+  }
 }
 const llms = await read("/llms.txt");
 assert.ok(llms.includes(origin), "AI reference identifies the canonical site");
 assert.ok(llms.includes(businessAddress), "AI reference uses the visible business address");
+assert.ok(llms.includes(`[Recore Blogs](${origin}/blogs)`), "AI reference points to the full article library");
+for (const match of llms.matchAll(/\[[^\]]+\]\((https?:\/\/[^)]+)\)/g)) {
+  const url = new URL(match[1]);
+  if (url.origin !== origin) continue;
+  const target = await read(url.pathname);
+  if (url.hash) assert.ok(target.includes(`id="${url.hash.slice(1)}"`), `${match[1]}: AI reference anchor exists`);
+}
 for (const path of [dataDestructionPath, ...categoryPaths]) assert.ok(llms.includes(`${origin}${path}`), `${path}: absolute guide reference`);
 assert.equal((await fetch(new URL("/recycling/unknown-category", base))).status, 404, "Unknown category is a real 404");
 console.log(`Verified ${titles.size} pages: metadata, structured data, sitemap, all rendered navigation links and CTA anchors.`);
