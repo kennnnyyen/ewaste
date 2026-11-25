@@ -29,6 +29,92 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "circuit-board-recycling-quote",
+    "category": "E-waste recycling",
+    "title": "Two crates of circuit boards. Same weight. Different quote.",
+    "seoTitle": "What affects a circuit board recycling quote?",
+    "description": "Sorting circuit boards for recycling in Melbourne? Send representative photos, a weight or count, and details of attached metal or batteries.",
+    "intro": "A crate of server boards can weigh the same as a crate of mixed desktop and laptop motherboards. But board type, grade and attached metal all affect how the lot is assessed.",
+    "sections": [
+      {
+        "heading": "1. Sort by board type",
+        "text": "Clearing out an IT storeroom or repair bench? Group server boards, motherboards and expansion cards by type if practical. Label the rest as mixed PCBs."
+      },
+      {
+        "heading": "2. Photograph both sides",
+        "text": "Take clear photos of both sides of one or two representative boards from each group."
+      },
+      {
+        "heading": "3. Share a count or weight",
+        "text": "Include an estimated weight or count, and let us know if there’s any attached metal or batteries. Leave the boards intact."
+      }
+    ],
+    "checklist": [],
+    "closing": "Already boxed everything together? Send a few photos of the mixed lot and we’ll tell you what else we need. Melbourne businesses can call or SMS Harry on **0406 406 016**, or see [Recore’s circuit board recycling guide](https://www.recore-cycle.com/recycling/circuit-boards).",
+    "topics": [
+      "Circuit board recycling",
+      "Computer scrap",
+      "Melbourne e-waste recycling"
+    ],
+    "related": [
+      {
+        "label": "Circuit board recycling",
+        "href": "/recycling/circuit-boards"
+      },
+      {
+        "label": "How to list CPUs, RAM and GPUs for recycling",
+        "href": "/blogs/cpu-ram-gpu-recycling-inventory"
+      }
+    ],
+    "image": {
+      "src": "/images/blogs/circuit-board-recycling-quote.webp",
+      "alt": "Motherboards and expansion cards sorted into separate trays on a workbench.",
+      "width": 1000,
+      "height": 1250
+    }
+  },
+  {
+    "slug": "cpu-ram-gpu-recycling-inventory",
+    "category": "IT asset recovery",
+    "title": "Upgraded a fleet? List the old CPUs, RAM and GPUs separately.",
+    "seoTitle": "How to list CPUs, RAM and GPUs for recycling",
+    "description": "Preparing a lot of old computer parts for recycling? List processors, RAM and graphics cards separately by type, quantity and condition.",
+    "intro": "A drawer of old computer parts can be hard to assess from a single photo. A quick inventory helps. Start with the part type, quantity and condition. If you haven’t tested something, just say “untested”.",
+    "sections": [
+      {
+        "heading": "What a useful inventory looks like",
+        "text": "For example: **12 CPUs with model numbers visible, 30 server RAM sticks of mixed capacities, and 4 untested graphics cards.** Add a photo of any readable markings. No need to guess the grade."
+      },
+      {
+        "heading": "What Recore assesses",
+        "text": "Recore assesses processors, desktop and server memory, and graphics cards. Any recovery value depends on the parts, their condition and current rates."
+      }
+    ],
+    "checklist": [],
+    "closing": "Melbourne businesses can call or SMS Harry on **0406 406 016**, or see [CPU, RAM and graphics card recycling](https://www.recore-cycle.com/recycling/processors-memory-and-graphics).",
+    "topics": [
+      "IT asset recovery",
+      "Computer parts recycling",
+      "Melbourne e-waste recycling"
+    ],
+    "related": [
+      {
+        "label": "CPU, RAM and graphics card recycling",
+        "href": "/recycling/processors-memory-and-graphics"
+      },
+      {
+        "label": "What affects a circuit board recycling quote?",
+        "href": "/blogs/circuit-board-recycling-quote"
+      }
+    ],
+    "image": {
+      "src": "/images/blogs/cpu-ram-gpu-recycling-inventory.webp",
+      "alt": "A processor, two memory sticks and a graphics card laid out separately on a workbench.",
+      "width": 1000,
+      "height": 1250
+    }
+  },
+  {
     "slug": "leased-office-it-before-e-waste-pickup",
     "category": "E-waste recycling",
     "title": "Before the e-waste pickup: are those laptops yours to recycle?",
