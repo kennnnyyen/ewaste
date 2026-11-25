@@ -18,6 +18,8 @@ type BlogArticle = {
   topics: string[];
   example?: string;
   fieldGuide?: { lead: string[]; heading: string; bullets: string[]; closing: string };
+  intro?: string;
+  closing?: string;
   story?: { lead: string[]; closing: string[]; website: string };
   sections: { heading: string; text: string; illustration?: BlogImage }[];
   checklist: string[];
@@ -26,6 +28,43 @@ type BlogArticle = {
 };
 
 export const articles: BlogArticle[] = [
+  {
+    "slug": "leased-office-it-before-e-waste-pickup",
+    "category": "E-waste recycling",
+    "title": "Before the e-waste pickup: are those laptops yours to recycle?",
+    "seoTitle": "Are those laptops yours to recycle?",
+    "description": "Clearing out office IT in Melbourne? Sort owned, leased and unverified laptops before pickup, and agree how data-bearing devices will be handled.",
+    "image": {
+      "src": "/images/blogs/leased-office-it-before-e-waste-pickup.webp",
+      "alt": "Retired business laptops and storage drives laid out for an inventory check before collection.",
+      "width": 1536,
+      "height": 1024
+    },
+    "topics": [
+      "Laptop recycling",
+      "IT asset disposal",
+      "Leased IT equipment",
+      "Melbourne business recycling"
+    ],
+    "intro": "During a Melbourne office clear-out, it’s easy for old laptops to end up on one trolley. One may belong to your business, another may be due back to a leasing company, and a third may have no readable asset tag. Sort out who owns each device before it leaves the office.",
+    "closing": "Already sorted your load? [Send Recore](https://www.recore-cycle.com/#contact) the equipment types, approximate quantities and postcode, or call or SMS Harry on 0406 406 016. We'll confirm acceptance, data requirements and whether your load qualifies for free pickup.",
+    "sections": [
+      {
+        "heading": "1. Confirm what your business owns",
+        "text": "Match each asset tag or device serial to your register, purchase records or lease schedule. Once your team has approved disposal, put the owned equipment on the recycling list. Flag data-bearing devices so you can agree on [verified erasure or secure destruction](https://www.recore-cycle.com/data-destruction) before handover."
+      },
+      {
+        "heading": "2. Set aside equipment due back",
+        "text": "Put leased or supplier-owned gear in a clearly marked return area. Check the agreement for return instructions, required accessories and responsibility for data removal. Agree on the approach with your IT team and the provider before removing a drive or wiping any device. [Australian Government guidance on leasing and buying equipment](https://business.gov.au/finance/leasing-or-buying-vehicles-and-equipment)."
+      },
+      {
+        "heading": "3. Put anything unverified on hold",
+        "text": "If a serial doesn’t match or ownership is unclear, set the device aside and assign someone in IT or finance to follow up. A simple list showing the asset ID, who owns the follow-up and what happens next lets the rest of the pickup go ahead."
+      }
+    ],
+    "checklist": [],
+    "related": []
+  },
   {
     "slug": "swollen-laptop-battery-office-clear-out",
     "category": "E-waste recycling",

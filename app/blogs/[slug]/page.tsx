@@ -89,7 +89,7 @@ export default async function ArticlePage({ params }: Props) {
           <header>
             <span className="eyebrow">{article.category}</span>
             <h1>{article.title}</h1>
-            <p>{article.description}</p>
+            <p>{article.intro ?? article.description}</p>
           </header>
           {article.imageCaption ? (
             <figure className="blog-article-cover">
@@ -124,7 +124,7 @@ export default async function ArticlePage({ params }: Props) {
           {article.sections.map(({ heading, text, illustration }) => (
             <section key={heading}>
               <h2>{heading}</h2>
-              {text.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {text.split("\n\n").map((paragraph) => <p key={paragraph}>{article.intro ? articleInline(paragraph) : paragraph}</p>)}
               {illustration && (
                 <Image {...illustration} alt={illustration.alt} className="blog-article-image" sizes="(max-width: 820px) 100vw, 780px" />
               )}
@@ -136,12 +136,13 @@ export default async function ArticlePage({ params }: Props) {
               <p><Link href="/">{article.story.website}</Link></p>
             </section>
           )}
-          <section className="blog-card">
+          {article.closing && <p>{articleInline(article.closing)}</p>}
+          {article.checklist.length > 0 && <section className="blog-card">
             <h2>What to include in your enquiry</h2>
             <ul className="category-list">
               {article.checklist.map((item) => <li key={item}>{item}</li>)}
             </ul>
-          </section>
+          </section>}
           {article.references && (
             <section>
               <h2>Further reading</h2>
@@ -155,13 +156,13 @@ export default async function ArticlePage({ params }: Props) {
           <ul className="blog-topics" aria-label="Article topics">
             {article.topics.map((topic) => <li key={topic}>{topic}</li>)}
           </ul>
-          <aside className="blog-card">
+          {(!article.closing || article.related.length > 0) && <aside className="blog-card">
             <h2>Related recycling guides</h2>
             {article.related.map(({ href, label }) => (
               <Link className="text-link" key={href} href={href}>{label} ↗</Link>
             ))}
             <Link className="button" href="/#contact">Request an assessment ↗</Link>
-          </aside>
+          </aside>}
             </>
           )}
         </article>
