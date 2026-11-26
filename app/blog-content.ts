@@ -29,6 +29,52 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "office-monitor-recycling-melbourne",
+    "category": "E-waste recycling",
+    "title": "How to recycle old office monitors in Melbourne",
+    "seoTitle": "How to recycle old office monitors in Melbourne",
+    "description": "Retiring office monitors in Melbourne? Identify LCD, LED and CRT screens, flag damaged displays and check collection eligibility before handover.",
+    "intro": "The new monitors are on the desks. The old ones are lined up by the loading bay. Before anyone moves them, take five minutes to check what’s actually in the batch. A few photos and a rough count can help avoid a surprise at collection.",
+    "sections": [
+      {
+        "heading": "Count and identify the screens",
+        "text": "Note how many LCD or LED desktop monitors you have. List older CRTs separately. If you’re unsure what a screen is, take a photo of the manufacturer’s label."
+      },
+      {
+        "heading": "Flag anything damaged",
+        "text": "Take a separate photo of cracked or dismantled displays and tell the recycler before arranging handover. Keep intact screens upright and protect the glass from knocks. If the display is part of an all-in-one computer, list it separately and flag any storage that needs secure handling."
+      },
+      {
+        "heading": "Confirm collection before moving the batch",
+        "text": "In Victoria, e-waste is banned from landfill. Use a dedicated recycling or collection service. Send Recore the counts, photos and pickup postcode. We’ll confirm acceptance, whether your load qualifies for free pickup, and any charges before you book."
+      }
+    ],
+    "checklist": [],
+    "closing": "Planning an office screen refresh? [Contact Recore](https://www.recore-cycle.com/#contact) or call or SMS Harry on **0406 406 016**.",
+    "references": [
+      {
+        "label": "Recore monitor and display recycling",
+        "href": "https://www.recore-cycle.com/recycling/monitors-and-displays"
+      },
+      {
+        "label": "EPA Victoria e-waste guidance",
+        "href": "https://www.epa.vic.gov.au/electronic-waste"
+      }
+    ],
+    "related": [],
+    "topics": [
+      "Monitor recycling",
+      "Office IT recycling",
+      "Melbourne e-waste recycling"
+    ],
+    "image": {
+      "src": "/images/blogs/office-monitor-recycling-melbourne.webp",
+      "alt": "Retired flat-panel office monitors standing upright in padded dividers on a Recore collection trolley.",
+      "width": 1122,
+      "height": 1402
+    }
+  },
+  {
     "slug": "circuit-board-recycling-quote",
     "category": "E-waste recycling",
     "title": "Two crates of circuit boards. Same weight. Different quote.",
