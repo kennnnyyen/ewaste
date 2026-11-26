@@ -29,6 +29,47 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "computer-cable-recycling-melbourne",
+    "category": "E-waste recycling",
+    "title": "How to recycle old computer cables and accessories in Melbourne",
+    "description": "Recycling old computer cables or accessories in Melbourne? Sort cables, peripherals and power adapters, and flag damaged items before organising collection.",
+    "intro": "Office clear-outs usually start with the larger equipment. Cables, keyboards and power adapters tend to get left in a mixed box. A quick sort makes that box easier to assess and saves a second trip through it later.",
+    "sections": [
+      {
+        "heading": "Sort into three groups",
+        "text": "Put computer and network cables together. Group keyboards and mice separately, then collect intact power supplies and adapters in a third group. If you aren’t sure what an item is, take a clear photo instead of guessing."
+      },
+      {
+        "heading": "Set exceptions aside",
+        "text": "Tell the recycler about loose batteries or damaged power supplies before packing or handing them over. Ask how they want those items handled rather than adding them to the mixed load."
+      },
+      {
+        "heading": "Send enough detail for a collection enquiry",
+        "text": "Give an approximate quantity, a few representative photos and your postcode. If there’s other retired IT equipment in the same clear-out, mention it so Recore can assess the load together. Recore can confirm acceptance and discuss collection options before you move the equipment."
+      }
+    ],
+    "checklist": [],
+    "closing": "[See Recore’s cable and peripheral recycling service](https://www.recore-cycle.com/recycling/cables-and-peripherals). Call or SMS Harry on **0406 406 016**, or email **info@recore-cycle.com**.",
+    "references": [
+      {
+        "label": "Recore cable and peripheral recycling",
+        "href": "https://www.recore-cycle.com/recycling/cables-and-peripherals"
+      }
+    ],
+    "related": [],
+    "topics": [
+      "Cable recycling",
+      "Office clear-outs",
+      "Melbourne e-waste recycling"
+    ],
+    "image": {
+      "src": "/images/blogs/computer-cable-recycling-melbourne.webp",
+      "alt": "Computer cables, keyboards, mice and adapters sorted beside a Recore collection tote.",
+      "width": 1122,
+      "height": 1402
+    }
+  },
+  {
     "slug": "office-monitor-recycling-melbourne",
     "category": "E-waste recycling",
     "title": "How to recycle old office monitors in Melbourne",
