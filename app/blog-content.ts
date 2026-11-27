@@ -29,6 +29,59 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "retired-laptop-company-management",
+    "category": "IT asset recovery",
+    "title": "Before you recycle company laptops, check who still manages them",
+    "description": "Retiring company laptops? Check Windows Autopilot or Apple Business enrolment, agree on secure data handling, and flag devices that aren’t ready for reuse.",
+    "intro": "When a laptop leaves your organisation for reuse, ask authorised IT staff to confirm both how its data is handled and whether the device is still registered to your organisation.",
+    "sections": [
+      {
+        "heading": "Confirm which devices can leave.",
+        "text": "Match serial numbers to your asset register. Set aside leased or unaccounted-for units until ownership is clear."
+      },
+      {
+        "heading": "Agree on the data-handling plan.",
+        "text": "Decide how storage will be erased or destroyed, who will verify the result and what evidence you need. Removing a device from an admin portal does not erase its files."
+      },
+      {
+        "heading": "Follow the vendor’s release workflow.",
+        "text": "[Microsoft](https://learn.microsoft.com/en-us/autopilot/registration-overview) recommends deregistering Autopilot devices when they permanently leave your organisation. For Apple devices, [check Activation Lock before release](https://support.apple.com/guide/business/release-devices-axmec4d28461/1/web/1). Apple says you can’t manage it from Apple Business after release; follow the vendor’s erase-and-restore instructions."
+      },
+      {
+        "heading": "Flag exceptions early.",
+        "text": "If a laptop won’t boot or its management status is unclear, keep it separate and don’t assume it is reuse-ready."
+      }
+    ],
+    "checklist": [],
+    "closing": "[Contact Recore](https://www.recore-cycle.com/recycling/computers-and-laptops) with your laptop types, quantities and Melbourne suburb to discuss recycling, collection and secure data handling.",
+    "references": [
+      {
+        "label": "Microsoft Windows Autopilot registration overview",
+        "href": "https://learn.microsoft.com/en-us/autopilot/registration-overview"
+      },
+      {
+        "label": "Apple Business: Release devices",
+        "href": "https://support.apple.com/guide/business/release-devices-axmec4d28461/1/web/1"
+      },
+      {
+        "label": "Recore computer and laptop recycling",
+        "href": "https://www.recore-cycle.com/recycling/computers-and-laptops"
+      }
+    ],
+    "related": [],
+    "topics": [
+      "Laptop recycling",
+      "IT asset disposition",
+      "Device enrolment"
+    ],
+    "image": {
+      "src": "/images/blogs/retired-laptop-company-management.webp",
+      "alt": "Handheld barcode scanner aimed at an asset tag on a closed laptop, beside a Recore inventory card.",
+      "width": 1122,
+      "height": 1402
+    }
+  },
+  {
     "slug": "office-move-comms-rack-recycling",
     "category": "E-waste recycling",
     "title": "40 desks are packed. One cabinet is still blinking.",
