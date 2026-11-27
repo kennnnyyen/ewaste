@@ -29,6 +29,33 @@ type BlogArticle = {
 
 export const articles: BlogArticle[] = [
   {
+    "slug": "office-move-comms-rack-recycling",
+    "category": "E-waste recycling",
+    "title": "40 desks are packed. One cabinet is still blinking.",
+    "seoTitle": "What to do with the comms rack when you move offices",
+    "description": "Moving out of a Melbourne office? Find out what to check before retiring network switches, routers and Ethernet cables, and what to send Recore for a pickup enquiry.",
+    "intro": "It’s moving day, and the old comms rack is still full of network switches, routers and Ethernet cables. Before anyone starts unplugging things, ask your IT team what’s still in use and what belongs to your internet provider.",
+    "image": {
+      "src": "/images/blogs/office-move-comms-rack-recycling.webp",
+      "alt": "A lit comms rack with network switches, a router and Ethernet cables beside moving boxes in a nearly empty office.",
+      "width": 1254,
+      "height": 1254
+    },
+    "imageCaption": "AI-generated illustration.",
+    "sections": [],
+    "checklist": [],
+    "closing": "Once IT confirms what can go, take a photo of the equipment and note any stairs or loading dock access. Moving out of a Melbourne office? Text Harry on 0406 406 016 with the photo and pickup postcode. ReCore can confirm which equipment we can accept and whether collection is available.",
+    "topics": [
+      "#OfficeRelocation",
+      "#CommsRack",
+      "#NetworkSwitches",
+      "#RouterRecycling",
+      "#EthernetCables",
+      "#MelbourneEWaste"
+    ],
+    "related": []
+  },
+  {
     "slug": "computer-cable-recycling-melbourne",
     "category": "E-waste recycling",
     "title": "How to recycle old computer cables and accessories in Melbourne",
